@@ -84,39 +84,39 @@ var diceFamily = [["64",    "衍聖公",    "",  ""],
                   ["21",    "童生",      "",  ""],
                   ["",      "蔭生",      "",  ""]];
 var diceRunCount = 30;
-var diceRun = [["44 21", "四德","0"],
-               ["34 31", "三德","0"],
-               ["24 41", "二德","0"],
-               ["24", "一德","1"],
-               ["34", "二德","1"],
-               ["44", "三德","1"],
-               ["54", "四德一才","1"],
-               ["64", "七德","1"],
-               ["26", "一才","1"],
-               ["36", "一才","1"],
-               ["46", "一才","1"],
-               ["56", "三德一才","1"],
-               ["66", "六德一才","1"],
-               ["25", "一功","1"],
-               ["35", "一功","1"],
-               ["45", "一功","1"],
-               ["55", "三德一功","1"],
-               ["65", "六德一功","1"],
-               ["23", "一良","1"],
-               ["33", "一良","1"],
-               ["43", "一良","1"],
-               ["53", "三德","1"],
-               ["63", "六德","1"],
-               ["22", "一由","1"],
-               ["32", "一由","1"],
-               ["42", "一由","1"],
-               ["52", "二德一才","1"],
-               ["62", "五德一才","1"],
-               ["21", "一庄","1"],
-               ["31", "一庄","1"],
-               ["41", "一庄","1"],
-               ["51", "二德一功","1"],
-               ["61", "五德一功","1"]];
+var diceRun = [["44 21", "德德德德","0"],
+               ["34 31", "德德德","0"],
+               ["24 41", "德德","0"],
+               ["24", "德","1"],
+               ["34", "德德","1"],
+               ["44", "德德德","1"],
+               ["54", "德德德德才","1"],
+               ["64", "德德德德德德德","1"],
+               ["26", "才","1"],
+               ["36", "才","1"],
+               ["46", "才","1"],
+               ["56", "德德德才","1"],
+               ["66", "德德德德德德才","1"],
+               ["25", "功","1"],
+               ["35", "功","1"],
+               ["45", "功","1"],
+               ["55", "德德德功","1"],
+               ["65", "德德德德德德功","1"],
+               ["23", "良","1"],
+               ["33", "良","1"],
+               ["43", "良","1"],
+               ["53", "德德德","1"],
+               ["63", "德德德德德德","1"],
+               ["22", "由","1"],
+               ["32", "由","1"],
+               ["42", "由","1"],
+               ["52", "德德才","1"],
+               ["62", "德德德德德才","1"],
+               ["21", "庄","1"],
+               ["31", "庄","1"],
+               ["41", "庄","1"],
+               ["51", "德德功","1"],
+               ["61", "德德德德德功","1"]];
 
 //                  號    名稱           ACT    SYSTEM
 var department = [["1",  "出身",        "",""],
@@ -371,7 +371,7 @@ function diceDoFamily() {
     dice[i]=Math.floor(Math.random()*6+0.99);
   }
   diceShow();
-  diceGetFamily();
+  return diceGetFamily();
 }
 
 function diceDoRun() {
@@ -380,7 +380,39 @@ function diceDoRun() {
   }
   //dice[0]=4;dice[1]=3;dice[2]=2;dice[3]=1;dice[4]=2;dice[5]=1;
   diceShow();
-  diceGetRun();
+  return diceGetRun();
+}
+
+var do_step=0;
+
+function diceDo(){
+//alert("?");
+  var dicedovalue = document.getElementById("dicedo").value;
+  if(dicedovalue == "开始"){
+    document.getElementById("dicedo").value=diceDoFamily();
+    do_step=1;
+//alert(1);
+  }else if(dicedovalue == "请投骰" || dicedovalue== "重投"){
+    document.getElementById("dicedo").value=diceDoRun();
+    do_step=2;
+//alert(2);
+  }else{
+    if(do_step==1){
+//      alert("set family");
+      document.getElementById("dicedo").value = "请投骰";
+      do_step=0;
+    }
+    if(do_step==2){
+      str = document.getElementById("dicedo").value;
+//      alert("do next" + str.substr(1));
+      
+      document.getElementById("dicedo").value = str.substr(1,str.length-1);
+      if (document.getElementById("dicedo").value == ""){
+        document.getElementById("dicedo").value = "请投骰";
+        do_step=0;
+      }
+    }
+  }
 }
 
 function diceShow() {
@@ -421,13 +453,18 @@ function diceGetFamily(){
   }
   if(diceZero>=1){
     diceZero=Math.floor(Math.random()*2+1);
-    if(diceZero==0)
-      document.getElementById("dicevalue").innerHTML = "天文生";
-    if(diceZero==1)
-      document.getElementById("dicevalue").innerHTML = "醫生";
-    if(diceZero==2)
-      document.getElementById("dicevalue").innerHTML = "土司";
-    return;
+    if(diceZero==0){
+      // document.getElementById("dicevalue").innerHTML = "天文生";
+      return "天文生";
+    }
+    if(diceZero==1){
+      // document.getElementById("dicevalue").innerHTML = "醫生";
+      return "醫生";
+    }
+    if(diceZero==2){
+      // document.getElementById("dicevalue").innerHTML = "土司";
+      return "土司";
+    }
   }
   diceCount.sort();
   diceCount.reverse();
@@ -441,16 +478,17 @@ function diceGetFamily(){
     if(s.indexOf(diceFamily[i][0])==0){
       if(diceFamily[i][2]!=""){
         if(diceTotal == Math.floor(diceFamily[i][2])){
-          document.getElementById("dicevalue").innerHTML = diceFamily[i][1];
-          return;
+          // document.getElementById("dicevalue").innerHTML = diceFamily[i][1];
+          return diceFamily[i][1];
         }
       }else{
-        document.getElementById("dicevalue").innerHTML = diceFamily[i][1];
-        return;
+        //document.getElementById("dicevalue").innerHTML = diceFamily[i][1];
+        return diceFamily[i][1];
       }
     }
   }
-  document.getElementById("dicevalue").innerHTML = "其它";
+  //document.getElementById("dicevalue").innerHTML = "其它";
+  return "其它";
 }
 
 function diceGetRun(){
@@ -480,8 +518,8 @@ function diceGetRun(){
     }
   }
   if(diceZero>=1){
-    document.getElementById("dicevalue").innerHTML = "重投";
-    return;
+    //document.getElementById("dicevalue").innerHTML = "重投";
+    return "重投";
   }
   diceCount.sort();
   diceCount.reverse();
@@ -491,22 +529,28 @@ function diceGetRun(){
     }
   }
   //s = s.replace(/\s+/g,"");
-  document.getElementById("dicevalue").innerHTML = "";
+  ret = "";
+//  document.getElementById("dicevalue").innerHTML = "";
   for(i=0; i<diceRunCount; i++){
     if(s.indexOf(" " + diceRun[i][0])>=0){
-      if(diceHas4==1&&diceRun[i][1]=="一庄"){
+      if(diceHas4==1&&diceRun[i][1]=="庄"){
         ;
       }else{
-        document.getElementById("dicevalue").innerHTML += diceRun[i][1];
+        // document.getElementById("dicevalue").innerHTML += diceRun[i][1];
+        ret += diceRun[i][1];
         if(diceRun[i][2]==0){
-          return;
+          return ret;
         }
       }
     }
   }
-  if(document.getElementById("dicevalue").innerHTML==""){
-    document.getElementById("dicevalue").innerHTML = "重投";
+//  if(document.getElementById("dicevalue").innerHTML==""){
+//    document.getElementById("dicevalue").innerHTML = "重投";
+//  }
+  if(ret==""){
+    ret = "重投";
   }
+  return ret;
 }
 
 function getDepartment(dep){
@@ -563,7 +607,6 @@ document.getElementById("positionArray").innerHTML = Position[i][0]+getPositionL
   }
 
   s+="</table>";
-alert(s);
   document.getElementById("positionArray").innerHTML = s;
 }
 
@@ -612,12 +655,12 @@ alert(s);
   border-width:2px;
   border-style:solid}
   </style>
-  <body style="margin:0px">
+  <body style="margin:0px" ondbclick="dice_pannel.style.left=">
     <div style="position:fixed;left:0px;top:0px;width:100%;height:50px;">
       <table width=100% bgcolor=#EEE height=80px><tr><td align=right><font size=80px>BOARD_NAME</font></table>
       <table width=100% bgcolor=#EEE height=24px><tr><td align=left width=100>Name:</td><td align=left width=100>Current:</td><td align=left width=100>Family:</td><td align=left width=100 nowrap>YY年YY月YY日</td></table>
     </div>
-    <div class="diceArea">
+    <div id="dicepannel" class="diceArea">
       <div id="dice1" class="dice"></div>
       <div id="dice2" class="dice"></div>
       <div id="dice3" class="dice"></div>
@@ -625,9 +668,10 @@ alert(s);
       <div id="dice5" class="dice"></div>
       <div id="dice6" class="dice"></div>
       <br/>
-      <input type="button" value="出身" onclick="diceDoFamily();"/>
-      <div id="dicevalue" class="dicevalue">重投</div>
-      <input type="button" value="考評" onclick="diceDoRun();"/>
+      <input type="button" style="width:180px" value="开始" id="dicedo" onclick="diceDo();"/>
+      <i-nput type="button" value="出身" onclick="document.getElementById('dicevalue').innerHTML = diceDoFamily();"/>
+      <d-iv id="dice-value" class="dice-value"></div>
+      <i-nput type="button" value="考評" onclick="document.getElementById('dicevalue').innerHTML = diceDoRun();"/>
     </div>
     <br><br><br><br><br><br><br>
       <div id="positionArray"></div>
@@ -642,6 +686,46 @@ alert(s);
   </body>
   <script>
 departmentArranged();
+
+let dice_pannel = document.querySelector("#dicepannel");
+
+dice_pannel.addEventListener("mousedown", function (e) {
+        let x = e.pageX - dice_pannel.offsetLeft;
+        let y = e.pageY - dice_pannel.offsetTop;
+
+
+        document.addEventListener("mousemove", move);
+        function move(e) {
+            dice_pannel.style.left = e.pageX - x + 'px';
+            dice_pannel.style.top = e.pageY - y + 'px';
+        }
+
+        document.addEventListener("mouseup", function (e) {
+            document.removeEventListener("mousemove", move);
+        })
+    })
+
+document.body.oncontextmenu = function (e) {
+/*  var l=dice_pannel.getBoundingClientRect().left;
+  l=l.substr(0,l.length-2);
+  var t=dice_pannel.getBoundingClientRect().top;
+  t=t.substr(0,t.length-2);
+  var r=dice_pannel.style.width;
+  r=r.substr(0,r.length-2);
+//  r+=l;
+  var b=dice_pannel.style.height;
+  b=b.substr(0,b.length-2);
+  //b+=t;
+  alert(l+" "+t+" "+r+" "+b);
+  if(e.pageX>l && e.pageY>dice_pannel.style.top && e.pageX<(dice_pannel.style.left + dice_pannel.style.width) && e.pageY<(dice_pannel.style.top+dice_pannel.style.height)){
+    alert(1);
+  }else{ */
+    dice_pannel.style.left = e.pageX + 'px';
+    dice_pannel.style.top = e.pageY + 'px';
+//  }
+  return false;
+}
+
   </script>
 </html>
 
