@@ -127,7 +127,7 @@ var department = [["1",  "出身",        "FM", "",""],
                   ["4",  "致士",        "RP", "不同二德","漢文"],
                   ["5",  "处分",        "RP", "","漢文"],
                   ["6",  "武职处分",    "RP", "","漢文"],
-                  ["7",  "",            "RP", "以上具入公筹",""],
+                  ["7",  "入公筹",      "RP", "以上具入公筹",""],
                   ["8",  "河标",        "MO", "不同二德",""],
                   ["9",  "漕标",        "MO", "不同二德",""],
                   ["10", "旗院",        "MO", "",""],
@@ -255,11 +255,41 @@ var department = [["1",  "出身",        "FM", "",""],
                   ["132","颜色对照表",  "",""],
                   ["133","捐班",        "FM",""]];
 
-//                號    子  品級   名稱   德       才     功       良     由    庄
+//                號  子    品級   名稱   德       才     功       良     由    庄
 var position = [["D024P01","一等","台吉","恩袭·輔國公","D120P6","滿八旗·都統","D062P01","漢八旗·都統","D064P01","外省駐防·都統","D046P01","留","D024P01","二等台吉","D024P02"],
                 ["D024P02","二等","台吉","恩袭·鎮國公","D120P5","一位","D024P01","藩右","","紀錄","","留","D024P01","下一","D024P03"],
                 ["D024P03","三等","台吉","二等台吉","P24.2","漢八旗·副都統","","外副都","","入鎮國","","留","P24.1","下一","P24.4"],
                 ["D024P04","四等","台吉","三等台吉","P24.3","蒙參","P63.3","漢參","","入輔國","","留","P24.1","免",""],
+                ['D105P01','从一','尚书'],
+                ['D105P02','正二','左侍郎'],
+                ['D105P03','正二','右侍郎'],
+                ['D105P04','正五','郎中'],
+                ['D105P05','从五','员外'],
+                ['D105P06','正六','主事'],
+                ['D106P01','从一','左都御史'],
+                ['D106P02','正二','副都御史'],
+                ['D106P03','从五','监察御史'],
+                ['D106P04','从五','巡城御史'],
+                ['D106P05','从五','巡街御史'],
+                ['D106P06','正六','都事'],
+                ['D106P07','正六','经历'],
+                ['D107P01','正四','正卿'],
+                ['D107P02','正五','郎中'],
+                ['D107P03','从五','员外'],
+                ['D107P04','正七','朝鲜通事'],
+                ['D107P05','正八','朝鲜通事'],
+                ['D107P06','正九','朝鲜通事'],
+                ['D107P07','正九','大使'],
+                ['D107P08','从九','正教序班'],
+                ['D108P01','正二','总管'],
+                ['D108P02','正五','郎中'],
+                ['D108P03','从五','员外'],
+                ['D108P04','从六','主事'],
+                ['D108P05','从五','管领'],
+                ['D108P06','正六','副管领'],
+                ['D108P07','正六','司俎'],
+                ['D108P08','正九','司库'],
+                ['D108P09','正九','司匠'],
                 ['D109P01','正一','大学士'],
                 ['D109P02','從一','协办大学士'],
                 ['D109P03','从二','学士'],
@@ -268,9 +298,9 @@ var position = [["D024P01","一等","台吉","恩袭·輔國公","D120P6","滿�
                 ['D109P06','从七','侍读'],
                 ['D109P07','正七','典籍'],
                 ['D109P08','正七','中书'],
-                ['D110P01','','宗令'],
-                ['D110P02','','宗正'],
-                ['D110P03','','宗人'],
+                ['D110P01','',    '宗令'],
+                ['D110P02','',    '宗正'],
+                ['D110P03','',    '宗人'],
                 ['D110P04','正三','宗丞'],
                 ['D110P05','正五','正理事'],
                 ['D110P06','从六','副理事'],
@@ -282,9 +312,9 @@ var position = [["D024P01","一等","台吉","恩袭·輔國公","D120P6","滿�
                 ['D111P04','正五','郎中'],
                 ['D111P05','从五','员外'],
                 ['D111P06','正六','主事'],
-                ['D111P07','','即用知县'],
-                ['D111P08','','候选知县'],
-                ['D111P09','','大挑举人'],
+                ['D111P07','',    '即用知县'],
+                ['D111P08','',    '候选知县'],
+                ['D111P09','',    '大挑举人'],
                 ['D112P01','正一','尚书'],
                 ['D112P02','正二','左侍郎'],
                 ['D112P03','正二','右侍郎'],
@@ -293,7 +323,7 @@ var position = [["D024P01","一等","台吉","恩袭·輔國公","D120P6","滿�
                 ['D112P06','正六','主事'],
                 ['D112P07','正七','司库'],
                 ['D112P08','未入','大使'],
-                ['D112P09','','宝泉局'],
+                ['D112P09','',    '宝泉局'],
                 ["D043P01","正三","總管","外副都","","提副","","外總管","","紀錄","","留","","僕總",""]];
 
 var level = ["正一品","從一品","正二品","從二品","正三品","從三品","正四品","從四品","正五品","從五品","正六品","從六品","正七品","從七品","正八品","從八品","正九品","從九品","未入流"];
@@ -301,7 +331,7 @@ var level = ["正一品","從一品","正二品","從二品","正三品","從三
 //var level = "正一01一等01從一02正二03二等03從二04正三05三等05從三06正四07四等07從四08正五09從五10正六11從六12正七13從七14正八15從八16正九17從九18未入19";
 //var level = "正一品01一等01從一品02正二品03二等03從二品04正三品05三等05從三品06正四品07四等07從四品08正五品09從五品10正六品11從六品12正七品13從七品14正八品5從八品16正九品17從九品18未入流19";
 
-// testing...
+// test
 var Department = [["起首",0,0],
                   ["出身",0,0],
                   ["京縣衙門",1,0],
@@ -422,19 +452,16 @@ function diceDoRun(){
 var do_step=0;
 
 function diceDo(){
-//alert("?");
   var dicedovalue = document.getElementById("dicedo").value;
   if(dicedovalue == "选择身份"){
     document.getElementById("dicedo").value=diceDoFamily();
     do_step=1;
-//alert(1);
   }else if(dicedovalue == "请投骰" || dicedovalue== "重投"){
     document.getElementById("dicedo").value=diceDoRun();
     do_step=2;
-//alert(2);
   }else{
     if(do_step==1){
-//      alert("set family");
+      diceDeck();
       document.getElementById("dicedo").value = "请投骰";
       do_step=0;
     }
@@ -444,6 +471,7 @@ function diceDo(){
       
       document.getElementById("dicedo").value = str.substr(1,str.length-1);
       if (document.getElementById("dicedo").value == ""){
+        diceDeck();
         document.getElementById("dicedo").value = "请投骰";
         do_step=0;
       }
@@ -451,14 +479,20 @@ function diceDo(){
   }
 }
 
-function diceShow() {
-  s="";
+function diceShow(){
   for(i=0; i<6; i++){
     if(dice[i]==1||dice[i]==4){
-      document.getElementById("dice"+(i+1)).innerHTML = "<font color=red>" + diceTils[diceType][dice[i]] + "</font>";
+      document.getElementById("dice"+(i+1)+"_back").innerHTML = "<font color=red>" + diceTils[diceType][dice[i]] + "</font>";
     }else{
-      document.getElementById("dice"+(i+1)).innerHTML = diceTils[diceType][dice[i]];
+      document.getElementById("dice"+(i+1)+"_back").innerHTML = diceTils[diceType][dice[i]];
     }
+    document.getElementById("dice"+(i+1)).classList.add('diceshow');
+  }
+}
+
+function diceDeck(){
+  for(i=1;i<=6;i++){
+    document.getElementById("dice"+i).classList.remove('diceshow');
   }
 }
 
@@ -470,6 +504,7 @@ function diceGetFamily(){
   j=0;
   diceZero = 0;
   diceCount[0][0]=0;
+
   for(i=0; i<6; i++){
     if(dice[i]==0){
       diceZero++;
@@ -502,6 +537,7 @@ function diceGetFamily(){
       return "土司";
     }
   }
+  s="";
   diceCount.sort();
   diceCount.reverse();
   for(i=0;i<6;i++){
@@ -664,7 +700,7 @@ function departmentArranged(){
     d[j][1] += "<div id='" + position[i][0] + "' class='POSI_" + department[j][2] + "'><div class='LEVL'>" + position[i][1] + "</div>" + position[i][2] + "</div>";
   }
   for(i=0;i<d.length;i++){
-    s=s+d[i][0]+d[i][1]+d[i][2];
+    s=d[i][0]+d[i][1]+d[i][2]+s;
   }
   document.getElementById("positionArray").innerHTML = s;
 
@@ -672,6 +708,7 @@ function departmentArranged(){
 
     </script>
   <style>
+
 .diceArea{
   text-align:center;
   vertical-align:middle;
@@ -681,12 +718,46 @@ function departmentArranged(){
   position:fixed;
   left:6px;
   top:6px;
-  width:200px;
-  height:50px;
+  width:176px;
+  height:48px;
   border-style:solid;
+  perspective:800px;
   border-width:8px;
   border-color:#4B5}
+.diceshow .dicef{
+  transform: rotateY(180deg);z-index:1}
+.diceshow .diceb{
+  transform: rotateY(0deg);z-index:2;}
 .dice{
+  width:24px;
+  height:20px;
+  vertical-align:middle;
+  transform-style:preserve-3d;
+  tr44ansition:transform 0.3s ease-out;
+  display:block;
+  position:fixed}
+.dicef{
+  width:24px;
+  height:20px;
+  vertical-align:middle;
+  text-align:center;
+  border-left-color:#DDD;
+  border-top-color:#DDD;
+  border-right-color:#AAA;
+  border-bottom-color:#999;
+  border-width:1px;
+  border-style:solid;
+  background-color:#EEE;
+  border-radius:5pt;
+  position:absolute;
+  z-index:2;
+  transform: rotateY(0deg);
+  transition:all .2s linear;
+  transform-style: preserve-3d;
+  top:0;
+  left:0;
+  backface-visibility:hidden;}
+.diceb{
   display:inline-block;
   width:24px;
   height:20px;
@@ -699,21 +770,15 @@ function departmentArranged(){
   border-width:1px;
   border-style:solid;
   background-color:#EEE;
-  border-radius:5pt}
-.dicevalue{
-  display:inline-block;
-  color:#DDD;
-  text-align:center;
-  background-color:#333;
-  border-radius:2pt;
-  width:100px;
-  height:20px;
-  border-left-color:#111;
-  border-top-color:#111;
-  border-right-color:#555;
-  border-bottom-color:#555;
-  border-width:2px;
-  border-style:solid}
+  border-radius:5pt;
+  position:absolute;
+  z-index:1;
+  transform: rotateY(-180deg)
+  transition:all .2s linear;
+  transform-style: preserve-3d;
+  top:0;
+  left:0;
+  backface-visibility:hidden}
 
 .DEPT_{
   display:inline-block;
@@ -1126,14 +1191,32 @@ function departmentArranged(){
     </div>
 
     <div id="dicepannel" class="diceArea">
-      <div id="dice1" class="dice"></div>
-      <div id="dice2" class="dice"></div>
-      <div id="dice3" class="dice"></div>
-      <div id="dice4" class="dice"></div>
-      <div id="dice5" class="dice"></div>
-      <div id="dice6" class="dice"></div>
+      <div id="dice1" class="dice" style="left:0">
+       <div id="dice1_front" class="dicef"></div>
+       <div id="dice1_back" class="diceb"></div>
+      </div>
+      <div id="dice2" class="dice" style="left:30">
+       <div id="dice2_front" class="dicef"></div>
+       <div id="dice2_back" class="diceb"></div>
+      </div>
+      <div id="dice3" class="dice" style="left:60">
+       <div id="dice3_front" class="dicef"></div>
+       <div id="dice3_back" class="diceb"></div>
+      </div>
+      <div id="dice4" class="dice" style="left:90">
+       <div id="dice4_front" class="dicef"></div>
+       <div id="dice4_back" class="diceb"></div>
+      </div>
+      <div id="dice5" class="dice" style="left:120">
+       <div id="dice5_front" class="dicef"></div>
+       <div id="dice5_back" class="diceb"></div>
+      </div>
+      <div id="dice6" class="dice" style="left:150">
+       <div id="dice6_front" class="dicef"></div>
+       <div id="dice6_back" class="diceb"></div>
+      </div>
       <br/>
-      <input type="button" style="width:180px" title="点击&#13;开始" value="选择身份" id="dicedo" onclick="diceDo();"/>
+      <input type="button" style="position:fixed;top:26px;left:0px;width:176px" title="点击&#13;开始" value="选择身份" id="dicedo" onclick="diceDo();"/>
     </div>
 <hr/>
 <p align=center>Copyright (C) 2021, xxx</p>
@@ -1156,23 +1239,23 @@ departmentArranged();
 let dice_pannel = document.querySelector("#dicepannel");
 
 dice_pannel.addEventListener("mousedown", function (e) {
-  let x = e.pageX - dice_pannel.offsetLeft;
-  let y = e.pageY - dice_pannel.offsetTop;
+  var x = e.pageX - dice_pannel.offsetLeft;
+  var y = e.pageY - dice_pannel.offsetTop;
 
   document.addEventListener("mousemove", move);
   function move(e) {
     dice_pannel.style.left = e.pageX - x + 'px';
     dice_pannel.style.top = e.pageY - y + 'px';
+    return false;
   }
 
   document.addEventListener("mouseup", function (e) {
     document.removeEventListener("mousemove", move);
+    return false;
   })
 })
 
 document.body.oncontextmenu = function (e) {
-  let x = e.pageX - dice_pannel.offsetLeft;
-  let y = e.pageY - dice_pannel.offsetTop;
   dice_pannel.style.left = e.clientX - 10 + 'px';
   dice_pannel.style.top = e.clientY - 10 + 'px';
   return false;
