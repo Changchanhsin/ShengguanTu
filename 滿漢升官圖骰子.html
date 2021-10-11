@@ -5,6 +5,7 @@
     <title>Board</title>
   </head>
   <script>
+var icons = "🟠🟡🟢🟣🟤🟥🟦🟧🟨🟩🟪🟫🐁🐂🐆🐇🐲🐍🐎🐏🐒🐓🐕🐖👦👧👨👩👱👲👳👴👵👶♈♉♊♋♌♍♎♏♐♑♒♓";
 
 var diceTils = [["0","1","2","3","4","5","6"],
                 [" ","壹","贰","叁","肆","伍","陆"],
@@ -118,147 +119,182 @@ var diceRun = [["44 21", "德德德德","0"],
                ["51", "德德功","1"],
                ["61", "德德德德德功","1"]];
 
-//                  號    名稱           ACT    SYSTEM
-var department = [["1",  "出身",        "",""],
-                  ["2",  "降官",        "不同二德","漢文"],
-                  ["3",  "起服",        "不同二德","漢文"],
-                  ["4",  "致士",        "不同二德","漢文"],
-                  ["5",  "处分",        "","漢文"],
-                  ["6",  "武职处分",    "","漢文"],
-                  ["7",  "",            "以上具入公筹",""],
-                  ["8",  "河标",        "不同二德",""],
-                  ["9",  "漕标",        "不同二德",""],
-                  ["10", "旗院",        "",""],
-                  ["10", "提标",        "",""],
-                  ["12", "鎮标",        "",""],
-                  ["13", "协标",        "",""],
-                  ["14", "守营",        "",""],
-                  ["15", "粮衛",        "",""],
-                  ["16", "聖庙",        "",""],
-                  ["17", "林庙",        "",""],
-                  ["18", "巡防",        "",""],
-                  ["19", "軍政",        "",""],
-                  ["20", "土府",        "",""],
-                  ["21", "土州",        "",""],
-                  ["22", "土縣",        "",""],
-                  ["23", "武衛",        "",""],
-                  ["24", "台吉府",      "不同二德","蒙"],
-                  ["25", "漢侍衛府",    "不同二德","漢武"],
-                  ["26", "文殿試",      "","漢文"],
-                  ["27", "武殿試",      "","漢武"],
-                  ["28", "文會試",      "","漢文"],
-                  ["29", "武會試",      "","漢武"],
-                  ["30", "文鄉試",      "","漢文"],
-                  ["31", "武鄉試",      "","漢武"],
-                  ["32", "學院",        "不同二德","漢文"],
-                  ["33", "會辦軍务",    "不同二德","蒙"],
-                  ["34", "旷典",        "不同二德","蒙"],
-                  ["35", "各管",        "不同二德","蒙"],
-                  ["36", "軍功",        "不同二德","蒙"],
-                  ["37", "河功",        "不同二德","蒙"],
-                  ["38", "文京察",      "不同二德","蒙"],
-                  ["39", "武京察",      "不同二德","蒙"],
-                  ["40", "大計",        "不同二德","蒙"],
-                  ["41", "功牌",        "不同二德","蒙"],
-                  ["42", "大考",        "",""],
-                  ["43", "陵寝",        "不同二德",""],
-                  ["44", "太僕寺马厂",  "不同二德",""],
-                  ["45", "各城駐防",    "不同二德",""],
-                  ["46", "外省駐防",    "不同二德",""],
-                  ["47", "京畿巡捕五营","不同二德",""],
-                  ["48", "督院",        "不同二德",""],
-                  ["49", "抚院",        "",""],
-                  ["50", "京府",        "",""],
-                  ["51", "外府",        "",""],
-                  ["52", "直隷州",      "",""],
-                  ["53", "外州",        "",""],
-                  ["54", "直隷廰",      "",""],
-                  ["55", "京縣",        "",""],
-                  ["56", "外縣",        "",""],
-                  ["57", "兼銜",        "",""],
-                  ["58", "钦差軍务",    "",""],
-                  ["59", "至聖裔官",    "",""],
-                  ["60", "丹使",        "",""],
-                  ["61", "满侍衛府",    "",""],
-                  ["62", "满八旗",      "",""],
-                  ["63", "蒙八旗",      "",""],
-                  ["64", "漢八旗",      "",""],
-                  ["65", "前锋",        "不同二德",""],
-                  ["66", "护軍",        "不同二德",""],
-                  ["67", "步軍",        "不同二德",""],
-                  ["68", "圆明园",      "不同二德",""],
-                  ["69", "火器营",      "不同二德",""],
-                  ["70", "健锐营",      "不同二德",""],
-                  ["71", "白塔信炮",    "不同二德",""],
-                  ["72", "南苑",        "不同二德",""],
-                  ["73", "内府包衣",    "不同二德",""],
-                  ["74", "王府",        "不同二德","漢武"],
-                  ["75", "河院",        "不同二德",""],
-                  ["76", "盐院",        "不同二德",""],
-                  ["77", "布政使司",    "不同二德",""],
-                  ["78", "按察使司",    "不同二德",""],
-                  ["79", "各道",        "不同二德",""],
-                  ["80", "各差",        "不同二德",""],
-                  ["81", "六科",        "",""],
-                  ["82", "神樂署",      "",""],
-                  ["83", "武備院",      "",""],
-                  ["84", "上駟院",      "",""],
-                  ["85", "奉宸院",      "",""],
-                  ["86", "通政司",      "",""],
-                  ["87", "皇史窚",      "",""],
-                  ["88", "中書科",      "",""],
-                  ["89", "大理寺",      "",""],
-                  ["90", "太常寺",      "",""],
-                  ["91", "太僕寺",      "",""],
-                  ["92", "光禄寺",      "",""],
-                  ["93", "鴻臚寺",      "",""],
-                  ["94", "各部院",      "",""],
-                  ["95", "太醫院",      "",""],
-                  ["96", "王府",        "不同二德","漢文"],
-                  ["97", "欽天監",      "不同二德",""],
-                  ["98", "鑾儀門",      "不同二德",""],
-                  ["99", "崇文門",      "不同二德",""],
-                  ["100","仓场",        "不同二德",""],
-                  ["101","兵马司",      "不同二德",""],
-                  ["102","督院",        "不同二德",""],
-                  ["103","漕院",        "不同二德",""],
-                  ["104","抚院",        "不同二德",""],
-                  ["105","理藩院",      "不同二德",""],
-                  ["106","都察院",      "不同二德",""],
-                  ["107","会同四驿馆",  "不同二德",""],
-                  ["108","内务府",      "不同軍功",""],
-                  ["109","内閣",        "不同二德",""],
-                  ["110","宗人府",      "不同二德",""],
-                  ["111","吏部",        "不同二德",""],
-                  ["112","户部",        "不同二德",""],
-                  ["113","禮部",        "不同二德",""],
-                  ["114","兵部",        "不同二德",""],
-                  ["115","刑部",        "不同二德",""],
-                  ["116","工部",        "不同二德",""],
-                  ["117","國子監",      "不同二德",""],
-                  ["118","翰林院",      "不同二德",""],
-                  ["119","詹事府",      "不同二德",""],
-                  ["120","恩袭",        "不同二德",""],
-                  ["121","封典",        "",""],
-                  ["122","功臣世爵",    "",""],
-                  ["123","出身世爵",    "",""],
-                  ["124","公主額驸",    "",""],
-                  ["125","经略大臣",    "",""],
-                  ["126","宫衛",        "",""],
-                  ["127","特恩",        "",""],
-                  ["128","殿閣大學士",  "",""],
-                  ["129","品级考",      "",""],
-                  ["130","内廷",        "",""],
+//  出身=FM=黑，满=MC=紫，文=CV=红，武=MO=青，钦天太医土司=ET=绿，蒙=MG=暗黄，处分=RP=蓝
+//                  號    名稱           SYS   ACT    SYSTEM、
+var department = [["1",  "出身",        "FM", "",""],
+                  ["2",  "降官",        "RP", "不同二德","漢文"],
+                  ["3",  "起服",        "RP", "不同二德","漢文"],
+                  ["4",  "致士",        "RP", "不同二德","漢文"],
+                  ["5",  "处分",        "RP", "","漢文"],
+                  ["6",  "武职处分",    "RP", "","漢文"],
+                  ["7",  "",            "RP", "以上具入公筹",""],
+                  ["8",  "河标",        "MO", "不同二德",""],
+                  ["9",  "漕标",        "MO", "不同二德",""],
+                  ["10", "旗院",        "MO", "",""],
+                  ["10", "提标",        "MO", "",""],
+                  ["12", "鎮标",        "MO", "",""],
+                  ["13", "协标",        "MO", "",""],
+                  ["14", "守营",        "MO", "",""],
+                  ["15", "粮衛",        "MO", "",""],
+                  ["16", "聖庙",        "MO", "",""],
+                  ["17", "林庙",        "MO", "",""],
+                  ["18", "巡防",        "MO", "",""],
+                  ["19", "軍政",        "MO", "",""],
+                  ["20", "土府",        "ET", "",""],
+                  ["21", "土州",        "ET", "",""],
+                  ["22", "土縣",        "ET", "",""],
+                  ["23", "武衛",        "ET", "",""],
+                  ["24", "台吉府",      "MG", "不同二德","蒙"],
+                  ["25", "漢侍衛府",    "MO", "不同二德","漢武"],
+                  ["26", "文殿試",      "CV", "","漢文"],
+                  ["27", "武殿試",      "MO", "","漢武"],
+                  ["28", "文會試",      "CV", "","漢文"],
+                  ["29", "武會試",      "MO", "","漢武"],
+                  ["30", "文鄉試",      "CV", "","漢文"],
+                  ["31", "武鄉試",      "MO", "","漢武"],
+                  ["32", "學院",        "CV", "不同二德","漢文"],
+                  ["33", "會辦軍务",    "CV", "不同二德","蒙"],
+                  ["34", "旷典",        "CV", "不同二德","蒙"],
+                  ["35", "各管",        "CV", "不同二德","蒙"],
+                  ["36", "軍功",        "CV", "不同二德","蒙"],
+                  ["37", "河功",        "MO", "不同二德","蒙"],
+                  ["38", "文京察",      "CV", "不同二德","蒙"],
+                  ["39", "武京察",      "MO", "不同二德","蒙"],
+                  ["40", "大計",        "CV", "不同二德","蒙"],
+                  ["41", "功牌",        "MO", "不同二德","蒙"],
+                  ["42", "大考",        "CV", "",""],
+                  ["43", "陵寝",        "MO", "不同二德",""],
+                  ["44", "太僕寺马厂",  "MO", "不同二德",""],
+                  ["45", "各城駐防",    "MO", "不同二德",""],
+                  ["46", "外省駐防",    "MO", "不同二德",""],
+                  ["47", "京畿巡捕五营","MO", "不同二德",""],
+                  ["48", "督院",        "MO", "不同二德",""],
+                  ["49", "抚院",        "MO", "",""],
+                  ["50", "京府",        "CV", "",""],
+                  ["51", "外府",        "CV", "",""],
+                  ["52", "直隷州",      "CV", "",""],
+                  ["53", "外州",        "CV", "",""],
+                  ["54", "直隷廰",      "CV", "",""],
+                  ["55", "京縣",        "CV", "",""],
+                  ["56", "外縣",        "CV", "",""],
+                  ["57", "兼銜",        "CV", "",""],
+                  ["58", "钦差軍务",    "CV", "",""],
+                  ["59", "至聖裔官",    "CV", "",""],
+                  ["60", "丹使",        "MO", "",""],
+                  ["61", "满侍衛府",    "MO", "",""],
+                  ["62", "满八旗",      "MO", "",""],
+                  ["63", "蒙八旗",      "MO", "",""],
+                  ["64", "漢八旗",      "MO", "",""],
+                  ["65", "前锋",        "MO", "不同二德",""],
+                  ["66", "护軍",        "MO", "不同二德",""],
+                  ["67", "步軍",        "MO", "不同二德",""],
+                  ["68", "圆明园",      "MO", "不同二德",""],
+                  ["69", "火器营",      "MO", "不同二德",""],
+                  ["70", "健锐营",      "MO", "不同二德",""],
+                  ["71", "白塔信炮",    "MO", "不同二德",""],
+                  ["72", "南苑",        "MO", "不同二德",""],
+                  ["73", "内府包衣",    "MO", "不同二德",""],
+                  ["74", "王府",        "MO", "不同二德","漢武"],
+                  ["75", "河院",        "CV", "不同二德",""],
+                  ["76", "盐院",        "CV", "不同二德",""],
+                  ["77", "布政使司",    "CV", "不同二德",""],
+                  ["78", "按察使司",    "CV", "不同二德",""],
+                  ["79", "各道",        "CV", "不同二德",""],
+                  ["80", "各差",        "CV", "不同二德",""],
+                  ["81", "六科",        "CV", "",""],
+                  ["82", "神樂署",      "CV", "",""],
+                  ["83", "武備院",      "CV", "",""],
+                  ["84", "上駟院",      "CV", "",""],
+                  ["85", "奉宸院",      "CV", "",""],
+                  ["86", "通政司",      "CV", "",""],
+                  ["87", "皇史窚",      "CV", "",""],
+                  ["88", "中書科",      "CV", "",""],
+                  ["89", "大理寺",      "CV", "",""],
+                  ["90", "太常寺",      "CV", "",""],
+                  ["91", "太僕寺",      "CV", "",""],
+                  ["92", "光禄寺",      "CV", "",""],
+                  ["93", "鴻臚寺",      "CV", "",""],
+                  ["94", "各部院",      "CV", "",""],
+                  ["95", "太醫院",      "ET", "",""],
+                  ["96", "王府",        "CV", "不同二德","漢文"],
+                  ["97", "欽天監",      "ET", "不同二德",""],
+                  ["98", "鑾儀門",      "MO", "不同二德",""],
+                  ["99", "崇文門",      "CV", "不同二德",""],
+                  ["100","仓场",        "CV", "不同二德",""],
+                  ["101","兵马司",      "CV", "不同二德",""],
+                  ["102","督院",        "CV", "不同二德",""],
+                  ["103","漕院",        "CV", "不同二德",""],
+                  ["104","抚院",        "CV", "不同二德",""],
+                  ["105","理藩院",      "CV", "不同二德",""],
+                  ["106","都察院",      "CV", "不同二德",""],
+                  ["107","会同四驿馆",  "CV", "不同二德",""],
+                  ["108","内务府",      "CV", "不同軍功",""],
+                  ["109","内閣",        "CV", "不同二德",""],
+                  ["110","宗人府",      "CV", "不同二德",""],
+                  ["111","吏部",        "CV", "不同二德",""],
+                  ["112","户部",        "CV", "不同二德",""],
+                  ["113","禮部",        "CV", "不同二德",""],
+                  ["114","兵部",        "CV", "不同二德",""],
+                  ["115","刑部",        "CV", "不同二德",""],
+                  ["116","工部",        "CV", "不同二德",""],
+                  ["117","國子監",      "CV", "不同二德",""],
+                  ["118","翰林院",      "CV", "不同二德",""],
+                  ["119","詹事府",      "CV", "不同二德",""],
+                  ["120","恩袭",        "CV", "不同二德",""],
+                  ["121","封典",        "CV", "",""],
+                  ["122","功臣世爵",    "CV", "",""],
+                  ["123","出身世爵",    "CV", "",""],
+                  ["124","公主額驸",    "CV", "",""],
+                  ["125","经略大臣",    "CV", "",""],
+                  ["126","宫衛",        "CV", "",""],
+                  ["127","特恩",        "CV", "",""],
+                  ["128","殿閣大學士",  "CV", "",""],
+                  ["129","品级考",      "CV", "",""],
+                  ["130","内廷",        "CV", "",""],
                   ["131","出身对照表",  "",""],
                   ["132","颜色对照表",  "",""],
-                  ["133","捐班",        "",""]];
+                  ["133","捐班",        "FM",""]];
 
 //                號    子  品級   名稱   德       才     功       良     由    庄
-var position = [["24", "1","一等","台吉","恩袭·輔國公","120.6","滿八旗·都統","62.1","漢八旗·都統","64.1","外省駐防·都統","46.1","留","24.1","二等台吉","24.2"],
-                ["24", "2","二等","台吉","恩袭·鎮國公","120.5","一位","24.1","藩右","","紀錄","","留","24.1","下一","24.3"],
-                ["24", "3","三等","台吉","二等台吉","24.2","漢八旗·副都統","","外副都","","入鎮國","","留","24.1","下一","24.4"],
-                ["24", "4","四等","台吉","三等台吉","24.3","蒙參","63.3","漢參","","入輔國","","留","24.1","免",""],
-                ["43", "1","正三","總管","外副都","","提副","","外總管","","紀錄","","留","","僕總",""]];
+var position = [["D024P01","一等","台吉","恩袭·輔國公","D120P6","滿八旗·都統","D062P01","漢八旗·都統","D064P01","外省駐防·都統","D046P01","留","D024P01","二等台吉","D024P02"],
+                ["D024P02","二等","台吉","恩袭·鎮國公","D120P5","一位","D024P01","藩右","","紀錄","","留","D024P01","下一","D024P03"],
+                ["D024P03","三等","台吉","二等台吉","P24.2","漢八旗·副都統","","外副都","","入鎮國","","留","P24.1","下一","P24.4"],
+                ["D024P04","四等","台吉","三等台吉","P24.3","蒙參","P63.3","漢參","","入輔國","","留","P24.1","免",""],
+                ['D109P01','正一','大学士'],
+                ['D109P02','從一','协办大学士'],
+                ['D109P03','从二','学士'],
+                ['D109P04','从四','侍读学士'],
+                ['D109P05','正六','侍读'],
+                ['D109P06','从七','侍读'],
+                ['D109P07','正七','典籍'],
+                ['D109P08','正七','中书'],
+                ['D110P01','','宗令'],
+                ['D110P02','','宗正'],
+                ['D110P03','','宗人'],
+                ['D110P04','正三','宗丞'],
+                ['D110P05','正五','正理事'],
+                ['D110P06','从六','副理事'],
+                ['D110P07','正六','主事'],
+                ['D110P08','正六','经历'],
+                ['D111P01','正一','尚书'],
+                ['D111P02','正二','左侍郎'],
+                ['D111P03','正二','右侍郎'],
+                ['D111P04','正五','郎中'],
+                ['D111P05','从五','员外'],
+                ['D111P06','正六','主事'],
+                ['D111P07','','即用知县'],
+                ['D111P08','','候选知县'],
+                ['D111P09','','大挑举人'],
+                ['D112P01','正一','尚书'],
+                ['D112P02','正二','左侍郎'],
+                ['D112P03','正二','右侍郎'],
+                ['D112P04','正五','郎中'],
+                ['D112P05','从五','员外'],
+                ['D112P06','正六','主事'],
+                ['D112P07','正七','司库'],
+                ['D112P08','未入','大使'],
+                ['D112P09','','宝泉局'],
+                ["D043P01","正三","總管","外副都","","提副","","外總管","","紀錄","","留","","僕總",""]];
 
 var level = ["正一品","從一品","正二品","從二品","正三品","從三品","正四品","從四品","正五品","從五品","正六品","從六品","正七品","從七品","正八品","從八品","正九品","從九品","未入流"];
 //var level = "正一品從一品正二品從二品正三品從三品正四品從四品正五品從五品正六品從六品正七品從七品正八品從八品正九品從九品未入流";
@@ -366,7 +402,7 @@ var Position = [["起首","1","","不押","案首","童生","白丁","不押"],
                 ["内閣學士衙門","2","三公","太傅","太师","庆贺","庆贺","免贺"],
                 ["内閣學士衙門","3","三公","太保","太傅","庆贺","庆贺","免贺"]];
 
-function diceDoFamily() {
+function diceDoFamily(){
   for(i=0; i<6; i++){
     dice[i]=Math.floor(Math.random()*6+0.99);
   }
@@ -374,7 +410,7 @@ function diceDoFamily() {
   return diceGetFamily();
 }
 
-function diceDoRun() {
+function diceDoRun(){
   for(i=0; i<6; i++){
     dice[i]=Math.floor(Math.random()*6+1);
   }
@@ -388,7 +424,7 @@ var do_step=0;
 function diceDo(){
 //alert("?");
   var dicedovalue = document.getElementById("dicedo").value;
-  if(dicedovalue == "开始"){
+  if(dicedovalue == "选择身份"){
     document.getElementById("dicedo").value=diceDoFamily();
     do_step=1;
 //alert(1);
@@ -577,7 +613,7 @@ function getPositionLevel(poslv){
   return -1;
 }
 
-function departmentArranged(){
+function departmentArranged1(){
   s = "";
   s = "<table align=center width=" + Department.length*100 + "px cellpadding=0 cellspacing=0>";
 
@@ -592,7 +628,7 @@ function departmentArranged(){
   }
 
   for(i=0;i<Position.length;i++){
-document.getElementById("positionArray").innerHTML = Position[i][0]+getPositionLevel(Position[i][2]);
+    document.getElementById("positionArray").innerHTML = Position[i][0]+getPositionLevel(Position[i][2]);
     if(getDepartment(Position[i][0])>=0){
       c[getDepartment(Position[i][0])][getPositionLevel(Position[i][2])]="<td bgcolor=lightgray>"+Position[i][3]+"</td>";
     }
@@ -608,6 +644,30 @@ document.getElementById("positionArray").innerHTML = Position[i][0]+getPositionL
 
   s+="</table>";
   document.getElementById("positionArray").innerHTML = s;
+}
+
+function departmentArranged(){
+  var d=new Array();
+  var s="";
+  for(i=0;i<department.length;i++){
+    d[i]=new Array();
+    d[i][0] = "<div id='D" + department[i][0] + "' class='DEPT_" + department[i][2] + "'>" + department[i][1];
+    d[i][0] += "<div id='D" + department[i][0] + "E' class='EXPD' onclick=\"hideDetail('D" + department[i][0] + "');\">▼</div><br>";
+    d[i][0] += "<div id='D" + department[i][0] + "P' style='display:inline-block;'>";
+    d[i][1] = "";
+    d[i][2] = "</div></div>";
+  }
+  var j;
+
+  for(i=0;i<position.length;i++){
+    j = position[i][0].substr(1,3) - 1;
+    d[j][1] += "<div id='" + position[i][0] + "' class='POSI_" + department[j][2] + "'><div class='LEVL'>" + position[i][1] + "</div>" + position[i][2] + "</div>";
+  }
+  for(i=0;i<d.length;i++){
+    s=s+d[i][0]+d[i][1]+d[i][2];
+  }
+  document.getElementById("positionArray").innerHTML = s;
+
 }
 
     </script>
@@ -654,12 +714,417 @@ document.getElementById("positionArray").innerHTML = Position[i][0]+getPositionL
   border-bottom-color:#555;
   border-width:2px;
   border-style:solid}
+
+.DEPT_{
+  display:inline-block;
+  color:#000;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:2px 2px 2px #000;
+  width:200px;
+  margin:2;
+  padding:2;
+  background-color:#EEE;
+  border-radius:5px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#EEE}
+.POSI_{
+  color:#000;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#BBB;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#999}
+.POSIACT_{
+  color:#000;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#999;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#888}
+.DEPT_CV{
+  display:inline-block;
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:2px 2px 2px #000;
+  width:200px;
+  margin:2;
+  padding:2;
+  background-color:#B45;
+  border-radius:5px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#934}
+.POSI_CV{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#B24;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#912}
+.POSIACT_CV{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#B6B;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#924}
+.DEPT_MO{
+  display:inline-block;
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:2px 2px 2px #000;
+  width:200px;
+  margin:2;
+  padding:2;
+  background-color:#4BB;
+  border-radius:5px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#399}
+.POSI_MO{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#2BB;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#199}
+.POSIACT_MO{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#6BB;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#299}
+.DEPT_MG{
+  display:inline-block;
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:2px 2px 2px #000;
+  width:200px;
+  margin:2;
+  padding:2;
+  background-color:#BB5;
+  border-radius:5px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#994}
+.POSI_MG{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#BB2;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#991}
+.POSIACT_MG{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#BB6;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#942}
+.DEPT_MC{
+  display:inline-block;
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:2px 2px 2px #000;
+  width:200px;
+  margin:2;
+  padding:2;
+  background-color:#B5B;
+  border-radius:5px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#949}
+.POSI_MC{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#B2B;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#919}
+.POSIACT_MC{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#B6B;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#924}
+.DEPT_ET{
+  display:inline-block;
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:2px 2px 2px #000;
+  width:200px;
+  margin:2;
+  padding:2;
+  background-color:#5B5;
+  border-radius:5px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#494}
+.POSI_ET{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#2B2;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#191}
+.POSIACT_ET{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#6B6;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#292}
+.DEPT_FM{
+  display:inline-block;
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:2px 2px 2px #000;
+  width:200px;
+  margin:2;
+  padding:2;
+  background-color:#555;
+  border-radius:5px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#444}
+.POSI_FM{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#222;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#111}
+.POSIACT_FM{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#666;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#222}
+.DEPT_RP{
+  display:inline-block;
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:2px 2px 2px #000;
+  width:200px;
+  margin:2;
+  padding:2;
+  background-color:#55B;
+  border-radius:5px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#449}
+.POSI_RP{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#22B;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#119}
+.POSIACT_RP{
+  color:#FFF;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:1px 1px 1px #000;
+  position:relative;
+  left:16px;
+  width:180px;
+  margin:1;
+  padding:1;
+  background-color:#66B;
+  border-radius:2px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#249}
+.ACTN{
+  display:inline-block;
+  vertical-align:middle;
+  font-size:xx-small;
+  left:8;
+  text-align:center;
+  background-color:#333;
+  border-color:#444;
+  border-radius:2px;
+  border-style:solid;
+  position:relative;
+  margin:1;
+  width:16px;
+  border-width:1px}
+.LEVL{
+  display:inline-block;
+  vertical-align:middle;
+  font-size:xx-small;
+  background-color:#333;
+  border-color:#444;
+  border-radius:2px;
+  border-style:solid;
+  margin:1;
+  border-width:1px}
+.EXPD{
+  display:inline-block;
+  color:#FF6;
+  vertical-align:middle;
+  font-size:xx-small;
+  text-align:center;
+  width:16px;}
+
   </style>
-  <body style="margin:0px" ondbclick="dice_pannel.style.left=">
+  <body style="margin:0px">
+    <br/><br/><br/><br/><br/><br/>
+    <div id="positionArray"></div>
+
     <div style="position:fixed;left:0px;top:0px;width:100%;height:50px;">
       <table width=100% bgcolor=#EEE height=80px><tr><td align=right><font size=80px>BOARD_NAME</font></table>
       <table width=100% bgcolor=#EEE height=24px><tr><td align=left width=100>Name:</td><td align=left width=100>Current:</td><td align=left width=100>Family:</td><td align=left width=100 nowrap>YY年YY月YY日</td></table>
     </div>
+
     <div id="dicepannel" class="diceArea">
       <div id="dice1" class="dice"></div>
       <div id="dice2" class="dice"></div>
@@ -668,61 +1133,48 @@ document.getElementById("positionArray").innerHTML = Position[i][0]+getPositionL
       <div id="dice5" class="dice"></div>
       <div id="dice6" class="dice"></div>
       <br/>
-      <input type="button" style="width:180px" value="开始" id="dicedo" onclick="diceDo();"/>
-      <i-nput type="button" value="出身" onclick="document.getElementById('dicevalue').innerHTML = diceDoFamily();"/>
-      <d-iv id="dice-value" class="dice-value"></div>
-      <i-nput type="button" value="考評" onclick="document.getElementById('dicevalue').innerHTML = diceDoRun();"/>
+      <input type="button" style="width:180px" title="点击&#13;开始" value="选择身份" id="dicedo" onclick="diceDo();"/>
     </div>
-    <br><br><br><br><br><br><br>
-      <div id="positionArray"></div>
-
-<hr width=50%/>
-      <table align=center>
-        <tr><td width=10px rowspan=2>出身<td width=2px rowspan=2 bgcolor=black><td width=200px bgcolor=lightyellow>童生
-        <tr><td width=200px bgcolor=lightyellow>蔭生
-      </table>
 <hr/>
 <p align=center>Copyright (C) 2021, xxx</p>
   </body>
   <script>
+
+
+function hideDetail(me){
+  if(document.getElementById(me+"E").innerHTML=="▼"){
+    document.getElementById(me+"E").innerHTML="▶";
+    document.getElementById(me+"P").style.display='none';
+  }else{
+    document.getElementById(me+"E").innerHTML="▼";
+    document.getElementById(me+"P").style.display='block';
+  }
+}
+
 departmentArranged();
 
 let dice_pannel = document.querySelector("#dicepannel");
 
 dice_pannel.addEventListener("mousedown", function (e) {
-        let x = e.pageX - dice_pannel.offsetLeft;
-        let y = e.pageY - dice_pannel.offsetTop;
+  let x = e.pageX - dice_pannel.offsetLeft;
+  let y = e.pageY - dice_pannel.offsetTop;
 
+  document.addEventListener("mousemove", move);
+  function move(e) {
+    dice_pannel.style.left = e.pageX - x + 'px';
+    dice_pannel.style.top = e.pageY - y + 'px';
+  }
 
-        document.addEventListener("mousemove", move);
-        function move(e) {
-            dice_pannel.style.left = e.pageX - x + 'px';
-            dice_pannel.style.top = e.pageY - y + 'px';
-        }
-
-        document.addEventListener("mouseup", function (e) {
-            document.removeEventListener("mousemove", move);
-        })
-    })
+  document.addEventListener("mouseup", function (e) {
+    document.removeEventListener("mousemove", move);
+  })
+})
 
 document.body.oncontextmenu = function (e) {
-/*  var l=dice_pannel.getBoundingClientRect().left;
-  l=l.substr(0,l.length-2);
-  var t=dice_pannel.getBoundingClientRect().top;
-  t=t.substr(0,t.length-2);
-  var r=dice_pannel.style.width;
-  r=r.substr(0,r.length-2);
-//  r+=l;
-  var b=dice_pannel.style.height;
-  b=b.substr(0,b.length-2);
-  //b+=t;
-  alert(l+" "+t+" "+r+" "+b);
-  if(e.pageX>l && e.pageY>dice_pannel.style.top && e.pageX<(dice_pannel.style.left + dice_pannel.style.width) && e.pageY<(dice_pannel.style.top+dice_pannel.style.height)){
-    alert(1);
-  }else{ */
-    dice_pannel.style.left = e.pageX + 'px';
-    dice_pannel.style.top = e.pageY + 'px';
-//  }
+  let x = e.pageX - dice_pannel.offsetLeft;
+  let y = e.pageY - dice_pannel.offsetTop;
+  dice_pannel.style.left = e.clientX - 10 + 'px';
+  dice_pannel.style.top = e.clientY - 10 + 'px';
   return false;
 }
 
