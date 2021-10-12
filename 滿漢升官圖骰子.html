@@ -15,13 +15,12 @@ var diceTils = [["0","1","2","3","4","5","6"],
                 [" ","🀙","🀚","🀛","🀜","🀝","🀞"],
                 [" ","🂡","🂢","🂣","🂤","🂥","🂦"],
                 [" ","庄","由","良","德","功","才"]];
+var diceName = "德才功良由庄";
 var dice = [1,1,1,1,1,1];
 var dicevalue = "";
-var diceCount = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
+var diceCount = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
 var diceType = 0;
 
-
-var diceFamilyCount=62;
 var diceFamily = [["64",    "衍聖公",    "",  ""],
                   ["66",    "朝鮮王",    "",  ""],
                   ["65",    "安南王",    "",  ""],
@@ -51,11 +50,11 @@ var diceFamily = [["64",    "衍聖公",    "",  ""],
                   ["42",    "議敘",      "",  ""],
                   ["41",    "鄉勇",      "",  ""],
                   ["3431",  "黃帶子",    "",  ""],
-                  ["343",   "紅帶",      "",  ""],
-                  ["313",   "紅帶",      "",  ""],
-                  ["323",   "紅帶",      "",  ""],
-                  ["333",   "紅帶",      "",  ""],
-                  ["353",   "紅帶",      "",  ""],
+                  ["343",   "紅帶子",    "",  ""],
+                  ["313",   "紅帶子",    "",  ""],
+                  ["323",   "紅帶子",    "",  ""],
+                  ["333",   "紅帶子",    "",  ""],
+                  ["353",   "紅帶子",    "",  ""],
                   ["34",    "筆貼式",    "",  "滿"],
                   ["36",    "繙譯生",    "",  ""],
                   ["35",    "官學生",    "",  "滿"],
@@ -84,7 +83,7 @@ var diceFamily = [["64",    "衍聖公",    "",  ""],
                   ["22",    "吏員",      "",  ""],
                   ["21",    "童生",      "",  ""],
                   ["",      "蔭生",      "",  ""]];
-var diceRunCount = 30;
+
 var diceRun = [["44 21", "德德德德","0"],
                ["34 31", "德德德","0"],
                ["24 41", "德德","0"],
@@ -121,145 +120,179 @@ var diceRun = [["44 21", "德德德德","0"],
 
 //  出身=FM=黑，满=MC=紫，文=CV=红，武=MO=青，钦天太医土司=ET=绿，蒙=MG=暗黄，处分=RP=蓝
 //                  號    名稱           SYS   ACT    SYSTEM、
-var department = [["1",  "出身",        "FM", "",""],
-                  ["2",  "降官",        "RP", "不同二德","漢文"],
-                  ["3",  "起服",        "RP", "不同二德","漢文"],
-                  ["4",  "致士",        "RP", "不同二德","漢文"],
-                  ["5",  "处分",        "RP", "","漢文"],
-                  ["6",  "武职处分",    "RP", "","漢文"],
-                  ["7",  "入公筹",      "RP", "以上具入公筹",""],
-                  ["8",  "河标",        "MO", "不同二德",""],
-                  ["9",  "漕标",        "MO", "不同二德",""],
-                  ["10", "旗院",        "MO", "",""],
-                  ["10", "提标",        "MO", "",""],
-                  ["12", "鎮标",        "MO", "",""],
-                  ["13", "协标",        "MO", "",""],
-                  ["14", "守营",        "MO", "",""],
-                  ["15", "粮衛",        "MO", "",""],
-                  ["16", "聖庙",        "MO", "",""],
-                  ["17", "林庙",        "MO", "",""],
-                  ["18", "巡防",        "MO", "",""],
-                  ["19", "軍政",        "MO", "",""],
-                  ["20", "土府",        "ET", "",""],
-                  ["21", "土州",        "ET", "",""],
-                  ["22", "土縣",        "ET", "",""],
-                  ["23", "武衛",        "ET", "",""],
-                  ["24", "台吉府",      "MG", "不同二德","蒙"],
-                  ["25", "漢侍衛府",    "MO", "不同二德","漢武"],
-                  ["26", "文殿試",      "CV", "","漢文"],
-                  ["27", "武殿試",      "MO", "","漢武"],
-                  ["28", "文會試",      "CV", "","漢文"],
-                  ["29", "武會試",      "MO", "","漢武"],
-                  ["30", "文鄉試",      "CV", "","漢文"],
-                  ["31", "武鄉試",      "MO", "","漢武"],
-                  ["32", "學院",        "CV", "不同二德","漢文"],
-                  ["33", "會辦軍务",    "CV", "不同二德","蒙"],
-                  ["34", "旷典",        "CV", "不同二德","蒙"],
-                  ["35", "各管",        "CV", "不同二德","蒙"],
-                  ["36", "軍功",        "CV", "不同二德","蒙"],
-                  ["37", "河功",        "MO", "不同二德","蒙"],
-                  ["38", "文京察",      "CV", "不同二德","蒙"],
-                  ["39", "武京察",      "MO", "不同二德","蒙"],
-                  ["40", "大計",        "CV", "不同二德","蒙"],
-                  ["41", "功牌",        "MO", "不同二德","蒙"],
-                  ["42", "大考",        "CV", "",""],
-                  ["43", "陵寝",        "MO", "不同二德",""],
-                  ["44", "太僕寺马厂",  "MO", "不同二德",""],
-                  ["45", "各城駐防",    "MO", "不同二德",""],
-                  ["46", "外省駐防",    "MO", "不同二德",""],
-                  ["47", "京畿巡捕五营","MO", "不同二德",""],
-                  ["48", "督院",        "MO", "不同二德",""],
-                  ["49", "抚院",        "MO", "",""],
-                  ["50", "京府",        "CV", "",""],
-                  ["51", "外府",        "CV", "",""],
-                  ["52", "直隷州",      "CV", "",""],
-                  ["53", "外州",        "CV", "",""],
-                  ["54", "直隷廰",      "CV", "",""],
-                  ["55", "京縣",        "CV", "",""],
-                  ["56", "外縣",        "CV", "",""],
-                  ["57", "兼銜",        "CV", "",""],
-                  ["58", "钦差軍务",    "CV", "",""],
-                  ["59", "至聖裔官",    "CV", "",""],
-                  ["60", "丹使",        "MO", "",""],
-                  ["61", "满侍衛府",    "MO", "",""],
-                  ["62", "满八旗",      "MO", "",""],
-                  ["63", "蒙八旗",      "MO", "",""],
-                  ["64", "漢八旗",      "MO", "",""],
-                  ["65", "前锋",        "MO", "不同二德",""],
-                  ["66", "护軍",        "MO", "不同二德",""],
-                  ["67", "步軍",        "MO", "不同二德",""],
-                  ["68", "圆明园",      "MO", "不同二德",""],
-                  ["69", "火器营",      "MO", "不同二德",""],
-                  ["70", "健锐营",      "MO", "不同二德",""],
-                  ["71", "白塔信炮",    "MO", "不同二德",""],
-                  ["72", "南苑",        "MO", "不同二德",""],
-                  ["73", "内府包衣",    "MO", "不同二德",""],
-                  ["74", "王府",        "MO", "不同二德","漢武"],
-                  ["75", "河院",        "CV", "不同二德",""],
-                  ["76", "盐院",        "CV", "不同二德",""],
-                  ["77", "布政使司",    "CV", "不同二德",""],
-                  ["78", "按察使司",    "CV", "不同二德",""],
-                  ["79", "各道",        "CV", "不同二德",""],
-                  ["80", "各差",        "CV", "不同二德",""],
-                  ["81", "六科",        "CV", "",""],
-                  ["82", "神樂署",      "CV", "",""],
-                  ["83", "武備院",      "CV", "",""],
-                  ["84", "上駟院",      "CV", "",""],
-                  ["85", "奉宸院",      "CV", "",""],
-                  ["86", "通政司",      "CV", "",""],
-                  ["87", "皇史窚",      "CV", "",""],
-                  ["88", "中書科",      "CV", "",""],
-                  ["89", "大理寺",      "CV", "",""],
-                  ["90", "太常寺",      "CV", "",""],
-                  ["91", "太僕寺",      "CV", "",""],
-                  ["92", "光禄寺",      "CV", "",""],
-                  ["93", "鴻臚寺",      "CV", "",""],
-                  ["94", "各部院",      "CV", "",""],
-                  ["95", "太醫院",      "ET", "",""],
-                  ["96", "王府",        "CV", "不同二德","漢文"],
-                  ["97", "欽天監",      "ET", "不同二德",""],
-                  ["98", "鑾儀門",      "MO", "不同二德",""],
-                  ["99", "崇文門",      "CV", "不同二德",""],
-                  ["100","仓场",        "CV", "不同二德",""],
-                  ["101","兵马司",      "CV", "不同二德",""],
-                  ["102","督院",        "CV", "不同二德",""],
-                  ["103","漕院",        "CV", "不同二德",""],
-                  ["104","抚院",        "CV", "不同二德",""],
-                  ["105","理藩院",      "CV", "不同二德",""],
-                  ["106","都察院",      "CV", "不同二德",""],
-                  ["107","会同四驿馆",  "CV", "不同二德",""],
-                  ["108","内务府",      "CV", "不同軍功",""],
-                  ["109","内閣",        "CV", "不同二德",""],
-                  ["110","宗人府",      "CV", "不同二德",""],
-                  ["111","吏部",        "CV", "不同二德",""],
-                  ["112","户部",        "CV", "不同二德",""],
-                  ["113","禮部",        "CV", "不同二德",""],
-                  ["114","兵部",        "CV", "不同二德",""],
-                  ["115","刑部",        "CV", "不同二德",""],
-                  ["116","工部",        "CV", "不同二德",""],
-                  ["117","國子監",      "CV", "不同二德",""],
-                  ["118","翰林院",      "CV", "不同二德",""],
-                  ["119","詹事府",      "CV", "不同二德",""],
-                  ["120","恩袭",        "CV", "不同二德",""],
-                  ["121","封典",        "CV", "",""],
-                  ["122","功臣世爵",    "CV", "",""],
-                  ["123","出身世爵",    "CV", "",""],
-                  ["124","公主額驸",    "CV", "",""],
-                  ["125","经略大臣",    "CV", "",""],
-                  ["126","宫衛",        "CV", "",""],
-                  ["127","特恩",        "CV", "",""],
-                  ["128","殿閣大學士",  "CV", "",""],
-                  ["129","品级考",      "CV", "",""],
-                  ["130","内廷",        "CV", "",""],
-                  ["131","出身对照表",  "",""],
-                  ["132","颜色对照表",  "",""],
-                  ["133","捐班",        "FM",""]];
+var department = [["D001","出身",        "FM", "",""],
+                  ["D002","降官",        "RP", "不同二德","漢文"],
+                  ["D003","起服",        "RP", "不同二德","漢文"],
+                  ["D004","致士",        "RP", "不同二德","漢文"],
+                  ["D005","处分",        "RP", "","漢文"],
+                  ["D006","武职处分",    "RP", "","漢文"],
+                  ["D007","入公筹",      "RP", "以上具入公筹",""],
+                  ["D008","河标",        "MO", "不同二德",""],
+                  ["D009","漕标",        "MO", "不同二德",""],
+                  ["D010","旗院",        "MO", "",""],
+                  ["D010","提标",        "MO", "",""],
+                  ["D012","鎮标",        "MO", "",""],
+                  ["D013","协标",        "MO", "",""],
+                  ["D014","守营",        "MO", "",""],
+                  ["D015","粮衛",        "MO", "",""],
+                  ["D016","聖庙",        "MO", "",""],
+                  ["D017","林庙",        "MO", "",""],
+                  ["D018","巡防",        "MO", "",""],
+                  ["D019","軍政",        "MO", "",""],
+                  ["D020","土府",        "ET", "",""],
+                  ["D021","土州",        "ET", "",""],
+                  ["D022","土縣",        "ET", "",""],
+                  ["D023","武衛",        "ET", "",""],
+                  ["D024","台吉府",      "MG", "不同二德","蒙"],
+                  ["D025","漢侍衛府",    "MO", "不同二德","漢武"],
+                  ["D026","文殿試",      "CV", "","漢文"],
+                  ["D027","武殿試",      "MO", "","漢武"],
+                  ["D028","文會試",      "CV", "","漢文"],
+                  ["D029","武會試",      "MO", "","漢武"],
+                  ["D030","文鄉試",      "CV", "","漢文"],
+                  ["D031","武鄉試",      "MO", "","漢武"],
+                  ["D032","學院",        "CV", "不同二德","漢文"],
+                  ["D033","會辦軍务",    "CV", "不同二德","蒙"],
+                  ["D034","旷典",        "CV", "不同二德","蒙"],
+                  ["D035","各管",        "CV", "不同二德","蒙"],
+                  ["D036","軍功",        "CV", "不同二德","蒙"],
+                  ["D037","河功",        "MO", "不同二德","蒙"],
+                  ["D038","文京察",      "CV", "不同二德","蒙"],
+                  ["D039","武京察",      "MO", "不同二德","蒙"],
+                  ["D040","大計",        "CV", "不同二德","蒙"],
+                  ["D041","功牌",        "MO", "不同二德","蒙"],
+                  ["D042","大考",        "CV", "",""],
+                  ["D043","陵寝",        "MO", "不同二德",""],
+                  ["D044","太僕寺马厂",  "MO", "不同二德",""],
+                  ["D045","各城駐防",    "MO", "不同二德",""],
+                  ["D046","外省駐防",    "MO", "不同二德",""],
+                  ["D047","京畿巡捕五营","MO", "不同二德",""],
+                  ["D048","督院",        "MO", "不同二德",""],
+                  ["D049","抚院",        "MO", "",""],
+                  ["D050","京府",        "CV", "",""],
+                  ["D051","外府",        "CV", "",""],
+                  ["D052","直隷州",      "CV", "",""],
+                  ["D053","外州",        "CV", "",""],
+                  ["D054","直隷廰",      "CV", "",""],
+                  ["D055","京縣",        "CV", "",""],
+                  ["D056","外縣",        "CV", "",""],
+                  ["D057","兼銜",        "CV", "",""],
+                  ["D058","钦差軍务",    "CV", "",""],
+                  ["D059","至聖裔官",    "CV", "",""],
+                  ["D060","丹使",        "MO", "",""],
+                  ["D061","满侍衛府",    "MO", "",""],
+                  ["D062","满八旗",      "MO", "",""],
+                  ["D063","蒙八旗",      "MO", "",""],
+                  ["D064","漢八旗",      "MO", "",""],
+                  ["D065","前锋",        "MO", "不同二德",""],
+                  ["D066","护軍",        "MO", "不同二德",""],
+                  ["D067","步軍",        "MO", "不同二德",""],
+                  ["D068","圆明园",      "MO", "不同二德",""],
+                  ["D069","火器营",      "MO", "不同二德",""],
+                  ["D070","健锐营",      "MO", "不同二德",""],
+                  ["D071","白塔信炮",    "MO", "不同二德",""],
+                  ["D072","南苑",        "MO", "不同二德",""],
+                  ["D073","内府包衣",    "MO", "不同二德",""],
+                  ["D074","王府",        "MO", "不同二德","漢武"],
+                  ["D075","河院",        "CV", "不同二德",""],
+                  ["D076","鹽院",        "CV", "不同二德",""],
+                  ["D077","布政使司",    "CV", "不同二德",""],
+                  ["D078","按察使司",    "CV", "不同二德",""],
+                  ["D079","各道",        "CV", "不同二德",""],
+                  ["D080","各差",        "CV", "不同二德",""],
+                  ["D081","六科",        "CV", "",""],
+                  ["D082","神樂署",      "CV", "",""],
+                  ["D083","武備院",      "CV", "",""],
+                  ["D084","上駟院",      "CV", "",""],
+                  ["D085","奉宸院",      "CV", "",""],
+                  ["D086","通政司",      "CV", "",""],
+                  ["D087","皇史窚",      "CV", "",""],
+                  ["D088","中書科",      "CV", "",""],
+                  ["D089","大理寺",      "CV", "",""],
+                  ["D090","太常寺",      "CV", "",""],
+                  ["D091","太僕寺",      "CV", "",""],
+                  ["D092","光禄寺",      "CV", "",""],
+                  ["D093","鴻臚寺",      "CV", "",""],
+                  ["D094","各部院",      "CV", "",""],
+                  ["D095","太醫院",      "ET", "",""],
+                  ["D096","王府",        "CV", "不同二德","漢文"],
+                  ["D097","欽天監",      "ET", "不同二德",""],
+                  ["D098","鑾儀門",      "MO", "不同二德",""],
+                  ["D099","崇文門",      "CV", "不同二德",""],
+                  ["D100","仓场",        "CV", "不同二德",""],
+                  ["D101","兵马司",      "CV", "不同二德",""],
+                  ["D102","督院",        "CV", "不同二德",""],
+                  ["D103","漕院",        "CV", "不同二德",""],
+                  ["D104","抚院",        "CV", "不同二德",""],
+                  ["D105","理藩院",      "CV", "不同二德",""],
+                  ["D106","都察院",      "CV", "不同二德",""],
+                  ["D107","会同四驿馆",  "CV", "不同二德",""],
+                  ["D108","内务府",      "CV", "不同軍功",""],
+                  ["D109","内閣",        "CV", "不同二德",""],
+                  ["D110","宗人府",      "CV", "不同二德",""],
+                  ["D111","吏部",        "CV", "不同二德",""],
+                  ["D112","户部",        "CV", "不同二德",""],
+                  ["D113","禮部",        "CV", "不同二德",""],
+                  ["D114","兵部",        "CV", "不同二德",""],
+                  ["D115","刑部",        "CV", "不同二德",""],
+                  ["D116","工部",        "CV", "不同二德",""],
+                  ["D117","國子監",      "CV", "不同二德",""],
+                  ["D118","翰林院",      "CV", "不同二德",""],
+                  ["D119","詹事府",      "CV", "不同二德",""],
+                  ["D120","恩袭",        "CV", "不同二德",""],
+                  ["D121","封典",        "CV", "",""],
+                  ["D122","功臣世爵",    "CV", "",""],
+                  ["D123","出身世爵",    "CV", "",""],
+                  ["D124","公主額驸",    "CV", "",""],
+                  ["D125","经略大臣",    "CV", "",""],
+                  ["D126","宫衛",        "CV", "",""],
+                  ["D127","特恩",        "CV", "",""],
+                  ["D128","殿閣大學士",  "CV", "",""],
+                  ["D129","品级考",      "CV", "",""],
+                  ["D130","内廷",        "CV", "",""],
+                  ["D131","出身对照表",  "",""],
+                  ["D132","颜色对照表",  "",""],
+                  ["D133","捐班",        "FM",""]];
 
 //                號  子    品級   名稱   德       才     功       良     由    庄
 var position = [["D024P01","一等","台吉","恩袭·輔國公","D120P6","滿八旗·都統","D062P01","漢八旗·都統","D064P01","外省駐防·都統","D046P01","留","D024P01","二等台吉","D024P02"],
                 ["D024P02","二等","台吉","恩袭·鎮國公","D120P5","一位","D024P01","藩右","","紀錄","","留","D024P01","下一","D024P03"],
                 ["D024P03","三等","台吉","二等台吉","P24.2","漢八旗·副都統","","外副都","","入鎮國","","留","P24.1","下一","P24.4"],
                 ["D024P04","四等","台吉","三等台吉","P24.3","蒙參","P63.3","漢參","","入輔國","","留","P24.1","免",""],
+                ['D001P01','',    '台吉'],
+                ['D001P02','',    '内侍衛'],
+                ['D001P03','',    '聖裔奉祀生'],
+                ['D001P04','',    '賢裔奉祀生'],
+                ['D001P05','',    '黃帶子'],
+                ['D001P06','',    '紅帶子'],
+                ['D001P07','',    '額外中書'],
+                ['D001P08','',    '額外旗員'],
+                ['D001P09','',    '庫史'],
+                ['D001P10','',    '職員'],
+                ['D001P11','',    '鴻博'],
+                ['D001P12','',    '蔭生'],
+                ['D001P13','',    '恩賞'],
+                ['D001P14','',    '保舉'],
+                ['D001P15','',    '詞科'],
+                ['D001P16','',    '軍功'],
+                ['D001P17','',    '議敘'],
+                ['D001P18','',    '鄉勇'],
+                ['D001P19','',    '筆貼式'],
+                ['D001P20','',    '繙譯生'],
+                ['D001P21','',    '官學生'],
+                ['D001P22','',    '樂舞生'],
+                ['D001P23','',    '供士'],
+                ['D001P24','',    '守兵'],
+                ['D001P25','',    '生員'],
+                ['D001P26','',    '武生'],
+                ['D001P27','',    '監生'],
+                ['D001P28','',    '驍騎'],
+                ['D001P29','',    '吏員'],
+                ['D001P30','',    '童生'],
+                ['D001P31','',    '旗丁'],
+                ['D001P32','',    '天文生'],
+                ['D001P33','',    '醫生'],
+                ['D001P34','',    '土司'],
                 ['D105P01','从一','尚书'],
                 ['D105P02','正二','左侍郎'],
                 ['D105P03','正二','右侍郎'],
@@ -444,31 +477,47 @@ function diceDoRun(){
   for(i=0; i<6; i++){
     dice[i]=Math.floor(Math.random()*6+1);
   }
-  //dice[0]=4;dice[1]=3;dice[2]=2;dice[3]=1;dice[4]=2;dice[5]=1;
+  //dice[0]=4;dice[1]=3;dice[2]=2;dice[3]=1;dice[4]=5;dice[5]=6;
   diceShow();
   return diceGetRun();
 }
 
 var do_step=0;
+var game_step="";
+var game_steptype="";
 
 function diceDo(){
   var dicedovalue = document.getElementById("dicedo").value;
+
   if(dicedovalue == "选择身份"){
     document.getElementById("dicedo").value=diceDoFamily();
     do_step=1;
-  }else if(dicedovalue == "请投骰" || dicedovalue== "重投"){
+  }else if(dicedovalue == "请投骰"){
     document.getElementById("dicedo").value=diceDoRun();
     do_step=2;
+  }else if(dicedovalue == "重投"){
+    diceDeck();
+    document.getElementById("dicedo").value = "请投骰";
+    do_step=0;
   }else{
     if(do_step==1){
+      game_step=getPosition(dicedovalue);
+      document.getElementById(game_step).className="POSIACT_FM";
+      window.location.href="#"+game_step;
       diceDeck();
       document.getElementById("dicedo").value = "请投骰";
       do_step=0;
     }
     if(do_step==2){
       str = document.getElementById("dicedo").value;
-//      alert("do next" + str.substr(1));
-      
+//    diceact = str.substr(0,1);
+//    act = getPositionAct(game_step,diceact);
+//    cn = document.getElementById(game_step).className;
+//    document.getElementById(game_step).className=cn.substr(0,4)+cn.substr(7,3);
+//    game_step=act;
+//    cn = document.getElementById(game_step).className;
+//    document.getElementById(game_step).className=cn.substr(0,4)+"ACT"+cn.substr(4,3);
+//    window.location.href="#"+game_step;
       document.getElementById("dicedo").value = str.substr(1,str.length-1);
       if (document.getElementById("dicedo").value == ""){
         diceDeck();
@@ -546,7 +595,7 @@ function diceGetFamily(){
     }
   }
   s = s.replace(/\s+/g,"");
-  for(i=0; i<diceFamilyCount; i++){
+  for(i=0; i<diceFamily.length; i++){
     if(s.indexOf(diceFamily[i][0])==0){
       if(diceFamily[i][2]!=""){
         if(diceTotal == Math.floor(diceFamily[i][2])){
@@ -593,6 +642,7 @@ function diceGetRun(){
     //document.getElementById("dicevalue").innerHTML = "重投";
     return "重投";
   }
+  s="";
   diceCount.sort();
   diceCount.reverse();
   for(i=0;i<6;i++){
@@ -600,10 +650,12 @@ function diceGetRun(){
       s = s + " " + diceCount[i][0] + diceCount[i][1];
     }
   }
+
+
   //s = s.replace(/\s+/g,"");
   ret = "";
 //  document.getElementById("dicevalue").innerHTML = "";
-  for(i=0; i<diceRunCount; i++){
+  for(i=0; i<diceRun.length; i++){
     if(s.indexOf(" " + diceRun[i][0])>=0){
       if(diceHas4==1&&diceRun[i][1]=="庄"){
         ;
@@ -649,6 +701,29 @@ function getPositionLevel(poslv){
   return -1;
 }
 
+function getPosition(nm){
+  for(i=0;i<position.length;i++){
+    if(position[i][2]==nm){
+      return position[i][0];
+    }
+  }
+  return -1;
+}
+
+function getPositionAct(id, diceact){
+  for(i=0;i<position.length;i++){
+    if(position[i][0]==id){
+      j = diceName.indexOf(diceact);
+      if(j>=0){
+        return position[i][j*2+4];
+      }else{
+        return -1;
+      }
+    }
+  }
+  return -1;
+}
+
 function departmentArranged1(){
   s = "";
   s = "<table align=center width=" + Department.length*100 + "px cellpadding=0 cellspacing=0>";
@@ -687,9 +762,9 @@ function departmentArranged(){
   var s="";
   for(i=0;i<department.length;i++){
     d[i]=new Array();
-    d[i][0] = "<div id='D" + department[i][0] + "' class='DEPT_" + department[i][2] + "'>" + department[i][1];
-    d[i][0] += "<div id='D" + department[i][0] + "E' class='EXPD' onclick=\"hideDetail('D" + department[i][0] + "');\">▼</div><br>";
-    d[i][0] += "<div id='D" + department[i][0] + "P' style='display:inline-block;'>";
+    d[i][0] = "<div id='" + department[i][0] + "' class='DEPT_" + department[i][2] + "'><a id='" + department[i][0] + "' />" + department[i][1];
+    d[i][0] += "<div id='" + department[i][0] + "E' class='EXPD' onclick=\"hideDetail('D" + department[i][0] + "');\">▼</div><br>";
+    d[i][0] += "<div id='" + department[i][0] + "P' style='display:inline-block;'>";
     d[i][1] = "";
     d[i][2] = "</div></div>";
   }
@@ -697,7 +772,7 @@ function departmentArranged(){
 
   for(i=0;i<position.length;i++){
     j = position[i][0].substr(1,3) - 1;
-    d[j][1] += "<div id='" + position[i][0] + "' class='POSI_" + department[j][2] + "'><div class='LEVL'>" + position[i][1] + "</div>" + position[i][2] + "</div>";
+    d[j][1] += "<div id='" + position[i][0] + "' class='POSI_" + department[j][2] + "'><a id='" + position[i][0] + "' /><div class='LEVL'>" + position[i][1] + "</div>" + position[i][2] + "</div>";
   }
   for(i=0;i<d.length;i++){
     s=d[i][0]+d[i][1]+d[i][2]+s;
@@ -720,6 +795,7 @@ function departmentArranged(){
   top:6px;
   width:176px;
   height:48px;
+  transform:perspective(800px);
   border-style:solid;
   perspective:800px;
   border-width:8px;
@@ -730,7 +806,7 @@ function departmentArranged(){
   transform: rotateY(0deg);z-index:2;}
 .dice{
   width:24px;
-  height:20px;
+  height:22px;
   vertical-align:middle;
   transform-style:preserve-3d;
   tr44ansition:transform 0.3s ease-out;
@@ -738,7 +814,7 @@ function departmentArranged(){
   position:fixed}
 .dicef{
   width:24px;
-  height:20px;
+  height:22px;
   vertical-align:middle;
   text-align:center;
   border-left-color:#DDD;
@@ -760,7 +836,7 @@ function departmentArranged(){
 .diceb{
   display:inline-block;
   width:24px;
-  height:20px;
+  height:22px;
   vertical-align:middle;
   text-align:center;
   border-left-color:#DDD;
@@ -773,7 +849,7 @@ function departmentArranged(){
   border-radius:5pt;
   position:absolute;
   z-index:1;
-  transform: rotateY(-180deg)
+  transform: rotateY(-180deg);
   transition:all .2s linear;
   transform-style: preserve-3d;
   top:0;
@@ -1181,13 +1257,13 @@ function departmentArranged(){
   width:16px;}
 
   </style>
-  <body style="margin:0px">
+  <body style="margin:0px" onselectstart="return false;">
     <br/><br/><br/><br/><br/><br/>
     <div id="positionArray"></div>
 
-    <div style="position:fixed;left:0px;top:0px;width:100%;height:50px;">
-      <table width=100% bgcolor=#EEE height=80px><tr><td align=right><font size=80px>BOARD_NAME</font></table>
-      <table width=100% bgcolor=#EEE height=24px><tr><td align=left width=100>Name:</td><td align=left width=100>Current:</td><td align=left width=100>Family:</td><td align=left width=100 nowrap>YY年YY月YY日</td></table>
+    <div id="boardinfo" style="position:fixed;left:440px;top:0px;width:400px;height:150px;background-color:#DAC;box-shadow:4px 4px 4px #000;border-radius:5pt;">
+      <table width=100% height=80px><tr><td align=right><font size=80px>BOARD_NAME</font></table>
+      <table width=100% height=24px><tr><td align=left width=100>Name:</td><td align=left width=100>Current:</td><td align=left width=100>Family:</td><td align=left width=100 nowrap>XX年YY月<br>公筹xxxx金</td></table>
     </div>
 
     <div id="dicepannel" class="diceArea">
@@ -1216,7 +1292,7 @@ function departmentArranged(){
        <div id="dice6_back" class="diceb"></div>
       </div>
       <br/>
-      <input type="button" style="position:fixed;top:26px;left:0px;width:176px" title="点击&#13;开始" value="选择身份" id="dicedo" onclick="diceDo();"/>
+      <input type="button" style="position:fixed;top:26px;left:0px;width:176px;height:24" title="点击&#13;开始" value="选择身份" id="dicedo" onclick="diceDo();"/>
     </div>
 <hr/>
 <p align=center>Copyright (C) 2021, xxx</p>
@@ -1236,7 +1312,7 @@ function hideDetail(me){
 
 departmentArranged();
 
-let dice_pannel = document.querySelector("#dicepannel");
+var dice_pannel = document.querySelector("#dicepannel");
 
 dice_pannel.addEventListener("mousedown", function (e) {
   var x = e.pageX - dice_pannel.offsetLeft;
@@ -1260,6 +1336,26 @@ document.body.oncontextmenu = function (e) {
   dice_pannel.style.top = e.clientY - 10 + 'px';
   return false;
 }
+
+
+var board_info = document.querySelector("#boardinfo");
+
+board_info.addEventListener("mousedown", function (e) {
+  var x = e.pageX - board_info.offsetLeft;
+  var y = e.pageY - board_info.offsetTop;
+
+  document.addEventListener("mousemove", move);
+  function move(e) {
+    board_info.style.left = e.pageX - x + 'px';
+    board_info.style.top = e.pageY - y + 'px';
+    return false;
+  }
+
+  document.addEventListener("mouseup", function (e) {
+    document.removeEventListener("mousemove", move);
+    return false;
+  })
+})
 
   </script>
 </html>
