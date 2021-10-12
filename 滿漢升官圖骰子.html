@@ -250,9 +250,10 @@ var department = [["D001","出身",        "FM", "",""],
                   ["D128","殿閣大學士",  "CV", "",""],
                   ["D129","品级考",      "CV", "",""],
                   ["D130","内廷",        "CV", "",""],
-                  ["D131","出身对照表",  "",""],
-                  ["D132","颜色对照表",  "",""],
-                  ["D133","捐班",        "FM",""]];
+//                  ["D131","出身对照表",  "",""],
+//                  ["D132","颜色对照表",  "",""],
+//                  ["D133","捐班",        "FM",""]
+                  ];
 
 //                號  子    品級   名稱   德       才     功       良     由    庄
 var position = [["D024P01","一等","台吉","恩袭·輔國公","D120P6","滿八旗·都統","D062P01","漢八旗·都統","D064P01","外省駐防·都統","D046P01","留","D024P01","二等台吉","D024P02"],
@@ -489,7 +490,7 @@ var game_steptype="";
 function diceDo(){
   var dicedovalue = document.getElementById("dicedo").value;
 
-  if(dicedovalue == "选择身份"){
+  if(dicedovalue == "获得身份"){
     document.getElementById("dicedo").value=diceDoFamily();
     do_step=1;
   }else if(dicedovalue == "请投骰"){
@@ -769,10 +770,15 @@ function departmentArranged(){
     d[i][2] = "</div></div>";
   }
   var j;
-
+  var t;
   for(i=0;i<position.length;i++){
     j = position[i][0].substr(1,3) - 1;
-    d[j][1] += "<div id='" + position[i][0] + "' class='POSI_" + department[j][2] + "'><a id='" + position[i][0] + "' /><div class='LEVL'>" + position[i][1] + "</div>" + position[i][2] + "</div>";
+    if(position[i].length>13){
+      t="德:"+ position[i][3] + "&#13;才:"+ position[i][5] + "&#13;功:"+ position[i][7] + "&#13;良:"+ position[i][9] + "&#13;由:"+ position[i][11] + "&#13;庄:" + position[i][13];
+    }else{
+      t="";
+    }
+    d[j][1] += "<div id='" + position[i][0] + "' class='POSI_" + department[j][2] + "' title='" + t + "'><a id='" + position[i][0] + "' /><div class='LEVL'>" + position[i][1] + "</div>" + position[i][2] + "</div>";
   }
   for(i=0;i<d.length;i++){
     s=d[i][0]+d[i][1]+d[i][2]+s;
@@ -785,445 +791,80 @@ function departmentArranged(){
   <style>
 
 .diceArea{
-  text-align:center;
-  vertical-align:middle;
-  box-shadow:4px 4px 4px #000;
+  perspective:800px;position:fixed;
+  left:6px;top:6px;width:176px;height:48px;
+  text-align:center;vertical-align:middle;
   background-color:#4B5;
-  border-radius:5pt;
-  position:fixed;
-  left:6px;
-  top:6px;
-  width:176px;
-  height:48px;
-  transform:perspective(800px);
-  border-style:solid;
-  perspective:800px;
-  border-width:8px;
-  border-color:#4B5}
+  border-style:solid;border-width:8px;border-radius:5pt;border-color:#4B5;
+  box-shadow:4px 4px 4px #000;}
 .diceshow .dicef{
-  transform: rotateY(180deg);z-index:1}
+  transform:rotateY(180deg);z-index:1}
 .diceshow .diceb{
-  transform: rotateY(0deg);z-index:2;}
+  transform:rotateY(0deg);z-index:2;}
 .dice{
-  width:24px;
-  height:22px;
-  vertical-align:middle;
+  width:24px;height:22px;
   transform-style:preserve-3d;
-  tr44ansition:transform 0.3s ease-out;
-  display:block;
-  position:fixed}
-.dicef{
-  width:24px;
-  height:22px;
-  vertical-align:middle;
-  text-align:center;
-  border-left-color:#DDD;
-  border-top-color:#DDD;
-  border-right-color:#AAA;
-  border-bottom-color:#999;
-  border-width:1px;
-  border-style:solid;
-  background-color:#EEE;
-  border-radius:5pt;
+  display:block;position:fixed}
+.dicef,.diceb{
   position:absolute;
-  z-index:2;
-  transform: rotateY(0deg);
+  top:0;left:0;width:24px;height:22px;
+  background-color:#EEE;
+  text-align:center;vertical-align:middle;
+  border-left-color:#DDD;border-top-color:#DDD;
+  border-right-color:#AAA;border-bottom-color:#999;
+  border-width:1px;border-style:solid;
+  border-radius:5pt;
   transition:all .2s linear;
-  transform-style: preserve-3d;
-  top:0;
-  left:0;
   backface-visibility:hidden;}
-.diceb{
-  display:inline-block;
-  width:24px;
-  height:22px;
-  vertical-align:middle;
-  text-align:center;
-  border-left-color:#DDD;
-  border-top-color:#DDD;
-  border-right-color:#AAA;
-  border-bottom-color:#999;
-  border-width:1px;
-  border-style:solid;
-  background-color:#EEE;
-  border-radius:5pt;
-  position:absolute;
-  z-index:1;
-  transform: rotateY(-180deg);
-  transition:all .2s linear;
-  transform-style: preserve-3d;
-  top:0;
-  left:0;
-  backface-visibility:hidden}
+.dicef{z-index:2;transform: rotateY(0deg);}
+.diceb{z-index:1;transform: rotateY(-180deg);}
 
-.DEPT_{
+.DEPT_,.DEPT_CV,.DEPT_MO,.DEPT_MG,.DEPT_MC,.DEPT_ET,.DEPT_FM,.DEPT_RP{
   display:inline-block;
-  color:#000;
-  text-align:left;
-  vertical-align:top;
+  width:200px;margin:2;padding:2;
+  text-align:left;vertical-align:top;
   box-shadow:2px 2px 2px #000;
-  width:200px;
-  margin:2;
-  padding:2;
-  background-color:#EEE;
-  border-radius:5px;
-  border-bottom-left-radius:0px;
-  border-bottom-right-radius:0px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#EEE}
-.POSI_{
-  color:#000;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
+  border-radius:5px;border-bottom-left-radius:0px;border-bottom-right-radius:0px;
+  border-style:solid;border-width:1px;}
+.POSI_,.POSI_CV,POSI_MO,.POSI_MG,.POSI_MC,.POSI_ET,.POSI_FM,.POSI_RP{
   position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#BBB;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#999}
-.POSIACT_{
-  color:#000;
-  text-align:left;
-  vertical-align:top;
+  left:16px;width:180px;margin:1;padding:1;
+  text-align:left;vertical-align:top;
   box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#999;
   border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#888}
-.DEPT_CV{
-  display:inline-block;
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:2px 2px 2px #000;
-  width:200px;
-  margin:2;
-  padding:2;
-  background-color:#B45;
-  border-radius:5px;
-  border-bottom-left-radius:0px;
-  border-bottom-right-radius:0px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#934}
-.POSI_CV{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
+  border-style:solid;border-width:1px;}
+.POSIACT_,.POSIACT_CV,.POSIACT_MO,.POSIACT_MG,.POSIACT_MC,.POSIACT_ET,.POSIACT_FM,.POSIACT_RP{
+  position:relative;
+  left:16px;width:180px;margin:1;padding:1;
+  text-align:left;vertical-align:top;
   box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#B24;
   border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#912}
-.POSIACT_CV{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#B6B;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#924}
-.DEPT_MO{
-  display:inline-block;
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:2px 2px 2px #000;
-  width:200px;
-  margin:2;
-  padding:2;
-  background-color:#4BB;
-  border-radius:5px;
-  border-bottom-left-radius:0px;
-  border-bottom-right-radius:0px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#399}
-.POSI_MO{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#2BB;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#199}
-.POSIACT_MO{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#6BB;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#299}
-.DEPT_MG{
-  display:inline-block;
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:2px 2px 2px #000;
-  width:200px;
-  margin:2;
-  padding:2;
-  background-color:#BB5;
-  border-radius:5px;
-  border-bottom-left-radius:0px;
-  border-bottom-right-radius:0px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#994}
-.POSI_MG{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#BB2;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#991}
-.POSIACT_MG{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#BB6;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#942}
-.DEPT_MC{
-  display:inline-block;
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:2px 2px 2px #000;
-  width:200px;
-  margin:2;
-  padding:2;
-  background-color:#B5B;
-  border-radius:5px;
-  border-bottom-left-radius:0px;
-  border-bottom-right-radius:0px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#949}
-.POSI_MC{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#B2B;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#919}
-.POSIACT_MC{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#B6B;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#924}
-.DEPT_ET{
-  display:inline-block;
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:2px 2px 2px #000;
-  width:200px;
-  margin:2;
-  padding:2;
-  background-color:#5B5;
-  border-radius:5px;
-  border-bottom-left-radius:0px;
-  border-bottom-right-radius:0px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#494}
-.POSI_ET{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#2B2;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#191}
-.POSIACT_ET{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#6B6;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#292}
-.DEPT_FM{
-  display:inline-block;
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:2px 2px 2px #000;
-  width:200px;
-  margin:2;
-  padding:2;
-  background-color:#555;
-  border-radius:5px;
-  border-bottom-left-radius:0px;
-  border-bottom-right-radius:0px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#444}
-.POSI_FM{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#222;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#111}
-.POSIACT_FM{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#666;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#222}
-.DEPT_RP{
-  display:inline-block;
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:2px 2px 2px #000;
-  width:200px;
-  margin:2;
-  padding:2;
-  background-color:#55B;
-  border-radius:5px;
-  border-bottom-left-radius:0px;
-  border-bottom-right-radius:0px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#449}
-.POSI_RP{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#22B;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#119}
-.POSIACT_RP{
-  color:#FFF;
-  text-align:left;
-  vertical-align:top;
-  box-shadow:1px 1px 1px #000;
-  position:relative;
-  left:16px;
-  width:180px;
-  margin:1;
-  padding:1;
-  background-color:#66B;
-  border-radius:2px;
-  border-style:solid;
-  border-width:1px;
-  border-color:#249}
+  border-style:solid;border-width:1px;}
+.DEPT_   {color:#000;background-color:#EEE;border-color:#EEE}
+.POSI_   {color:#000;background-color:#BBB;border-color:#999}
+.POSIACT_{color:#000;background-color:#999;border-color:#888}
+.DEPT_CV   {color:#FFF;background-color:#B45;border-color:#934}
+.POSI_CV   {color:#FFF;background-color:#B24;border-color:#912}
+.POSIACT_CV{color:#FFF;background-color:#B6B;border-color:#924}
+.DEPT_MO   {color:#FFF;background-color:#4BB;border-color:#399}
+.POSI_MO   {color:#FFF;background-color:#2BB;border-color:#199}
+.POSIACT_MO{color:#FFF;background-color:#6BB;border-color:#299}
+.DEPT_MG   {color:#FFF;background-color:#BB5;border-color:#994}
+.POSI_MG   {color:#FFF;background-color:#BB2;border-color:#991}
+.POSIACT_MG{color:#FFF;background-color:#BB6;border-color:#942}
+.DEPT_MC   {color:#FFF;background-color:#B5B;border-color:#949}
+.POSI_MC   {color:#FFF;background-color:#B2B;border-color:#919}
+.POSIACT_MC{color:#FFF;background-color:#B6B;border-color:#924}
+.DEPT_ET   {color:#FFF;background-color:#4C5;border-color:#495}
+.POSI_ET   {color:#FFF;background-color:#2C3;border-color:#293}
+.POSIACT_ET{color:#FFF;background-color:#3C4;border-color:#394}
+.DEPT_FM   {color:#FFF;background-color:#555;border-color:#444}
+.POSI_FM   {color:#FFF;background-color:#444;border-color:#333}
+.POSIACT_FM{color:#FFF;background-color:#666;border-color:#222}
+.DEPT_RP   {color:#FFF;background-color:#55B;border-color:#449}
+.POSI_RP   {color:#FFF;background-color:#22B;border-color:#119}
+.POSIACT_RP{color:#FFF;background-color:#66B;border-color:#249}
+
 .ACTN{
   display:inline-block;
   vertical-align:middle;
@@ -1257,12 +898,12 @@ function departmentArranged(){
   width:16px;}
 
   </style>
-  <body style="margin:0px" onselectstart="return false;">
+  <body style="margin:0px;background-color:#666" onselectstart="return false;" onload="onBodyLoad();">
     <br/><br/><br/><br/><br/><br/>
     <div id="positionArray"></div>
 
     <div id="boardinfo" style="position:fixed;left:440px;top:0px;width:400px;height:150px;background-color:#DAC;box-shadow:4px 4px 4px #000;border-radius:5pt;">
-      <table width=100% height=80px><tr><td align=right><font size=80px>BOARD_NAME</font></table>
+      <table width=100% height=80px><tr><td align=center><font size=80px>滿漢陞官圖</font></table>
       <table width=100% height=24px><tr><td align=left width=100>Name:</td><td align=left width=100>Current:</td><td align=left width=100>Family:</td><td align=left width=100 nowrap>XX年YY月<br>公筹xxxx金</td></table>
     </div>
 
@@ -1292,10 +933,10 @@ function departmentArranged(){
        <div id="dice6_back" class="diceb"></div>
       </div>
       <br/>
-      <input type="button" style="position:fixed;top:26px;left:0px;width:176px;height:24" title="点击&#13;开始" value="选择身份" id="dicedo" onclick="diceDo();"/>
+      <input type="button" style="position:fixed;top:26px;left:0px;width:176px;height:24" title="点击这里&#13;开始" value="获得身份" id="dicedo" onclick="diceDo();"/>
     </div>
 <hr/>
-<p align=center>Copyright (C) 2021, xxx</p>
+<p align=center>Copyright (C) 2021, ZZX</p>
   </body>
   <script>
 
@@ -1356,6 +997,13 @@ board_info.addEventListener("mousedown", function (e) {
     return false;
   })
 })
+
+function onBodyLoad(){
+  board_info.style.left = (window.innerWidth-parseInt(board_info.offsetWidth))/2;
+  board_info.style.top = (window.innerHeight-parseInt(board_info.offsetHeight))/4;
+  dice_pannel.style.left = (window.innerWidth-parseInt(dice_pannel.offsetWidth))/2;
+  dice_pannel.style.top = (window.innerHeight-parseInt(dice_pannel.offsetHeight))*3/4;
+}
 
   </script>
 </html>
