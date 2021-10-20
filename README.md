@@ -5,11 +5,11 @@
 单文件执行（不使用外部资源、外部链接）。
 
 ## 功能
--- dice
--- departments
--- positions
--- date
--- money
--- run
--- action
--- history
+- dice
+- departments
+- positions
+- date
+- money
+- run
+- action
+- history
