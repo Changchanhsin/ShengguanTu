@@ -133,7 +133,7 @@ var department = [["D001","出身",        "FM", "",""],
                   ["D008","河标",        "MO", "",""],
                   ["D009","漕标",        "MO", "",""],
                   ["D010","旗院",        "MO", "",""],
-                  ["D010","提标",        "MO", "",""],
+                  ["D011","提标",        "MO", "",""],
                   ["D012","鎮标",        "MO", "",""],
                   ["D013","协标",        "MO", "",""],
                   ["D014","守营",        "MO", "",""],
@@ -1653,8 +1653,8 @@ function departmentArranged(){
   var s="";
   for(i=0;i<department.length;i++){
     d[i]=new Array();
-    d[i][0] = "<div id='" + department[i][0] + "' class='DEPT_" + department[i][2] + "'><a id='" + department[i][0] + "' />" + department[i][1];
-    d[i][0] += "<div id='" + department[i][0] + "E' class='EXPD' onclick=\"hideDetail('" + department[i][0] + "');\">▼</div><br>";
+    d[i][0] = "<div id='" + department[i][0] + "' class='DEPT_" + department[i][2] + "' onclick=\"hideDetail('" + department[i][0] + "');\"><a id='" + department[i][0] + "' />" + department[i][1];
+    d[i][0] += "<div id='" + department[i][0] + "E' class='EXPD'>▼</div><br>";
     d[i][0] += "<div id='" + department[i][0] + "P' style='display:inline-block;'>";
     d[i][1] = "";
     d[i][2] = "</div></div>";
