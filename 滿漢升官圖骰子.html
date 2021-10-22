@@ -6,7 +6,13 @@
   </head>
   <script>
 var icons = "🟠🟡🟢🟣🟤🟥🟦🟧🟨🟩🟪🟫🐁🐂🐆🐇🐲🐍🐎🐏🐒🐓🐕🐖👦👧👨👩👱👲👳👴👵👶♈♉♊♋♌♍♎♏♐♑♒♓";
-var currentYear = 20; // 年龄
+var familyName = "趙錢孫李周吳鄭王馮陳褚衛蔣沈韓楊朱秦尤許何呂施張孔曹嚴華金魏陶姜戚謝鄒喻柏水竇章雲蘇潘葛奚範彭郎魯韋昌馬苗鳳花方俞任袁柳酆鮑史唐費廉岑薛雷賀倪湯滕殷羅畢郝鄔安常樂於時傅皮卞齊康伍余元蔔顧孟平黃和穆蕭尹姚邵湛汪祁毛禹狄米貝明臧計伏成戴談宋茅龐熊紀舒屈項祝董梁杜阮藍閔席季麻強賈路婁危江童顏郭梅盛林刁鐘徐邱駱高夏蔡田樊胡淩霍虞萬支柯昝管盧莫經房裘繆幹解應宗丁宣賁鄧郁單杭洪包諸左石崔吉鈕龔程嵇邢滑裴陸榮翁荀羊於惠甄曲家封芮羿儲靳汲邴糜松井段富巫烏焦巴弓牧隗山谷車侯宓蓬全郗班仰秋仲伊宮寧仇欒暴甘鈄厲戎祖武符劉景詹束龍葉幸司韶郜黎薊薄印宿白懷蒲邰從鄂索咸籍賴卓藺屠蒙池喬陰鬱胥能蒼雙聞莘黨翟譚貢勞逄姬申扶堵冉宰酈雍郤璩桑桂濮牛壽通邊扈燕冀郟浦尚農溫別莊晏柴瞿閻充慕連茹習宦艾魚容向古易慎戈廖庾終暨居衡步都耿滿弘匡國文寇廣祿闕東歐殳沃利蔚越夔隆師鞏厙聶晁勾敖融冷訾辛闞那簡饒空曾毋沙乜養鞠須豐巢關蒯相查後荊紅遊竺權逯蓋益桓公";
+var firstName = "濤昌進林有堅和彪博誠先敬震振壯會群豪心邦承樂紹功松善厚慶磊民友裕河哲江超浩亮政謙亨奇固之輪翰朗伯宏言若鳴朋斌梁棟維啟克倫翔旭鵬澤晨辰士以建家致樹炎德行時泰盛雄琛鈞冠策騰偉剛勇毅俊峰強軍平保東文輝力明永健世廣誌義興良海山仁波寧貴福生龍元全國勝學祥才發成康星光天達安巖中茂武新利清飛彬富順信子傑楠榕風航弘";
+var province = ["北京", "直隸", "山東", "山西", "河南", "陜西", "湖南", "湖北", "安徽", "江蘇", "浙江", "江西", "福建", "廣東", "廣西", "甘肅", "陜西", "雲南", "貴州", "盛京", "吉林", "黑龍江", "伊犁", "烏里雅蘇臺", "西藏", "青海"];
+var eraName = ["順治", "康熙", "雍正", "乾隆", "嘉慶", "道光", "咸豐", "同治", "光緒", "宣統"];
+var eraYear = [18, 61, 13, 60, 25, 30, 11, 13, 34, 3];
+var currentYear = 200; // 年份
+var currentAge = 20; // 年龄
 var publicMoney = 1000;
 var currentMoney = 10;
 
@@ -133,7 +139,7 @@ var department = [["D001","出身",        "FM", "",""],
                   ["D008","河标",        "MO", "",""],
                   ["D009","漕标",        "MO", "",""],
                   ["D010","旗院",        "MO", "",""],
-                  ["D011","提标",        "MO", "",""],
+                  ["D010","提标",        "MO", "",""],
                   ["D012","鎮标",        "MO", "",""],
                   ["D013","协标",        "MO", "",""],
                   ["D014","守营",        "MO", "",""],
@@ -259,7 +265,7 @@ var department = [["D001","出身",        "FM", "",""],
                   ];
 
 //  DxxxPxx：下一步；DxxxAxx：额外行动；DxxxRxx
-//                號  子    品級   名稱         德                   才                   功                   良     由    庄
+//                號  子    品級   名稱   德       才     功       良     由    庄
 var position = [['D001P01','',    '台吉',      '台吉府·三等台吉','D024P03', '台吉府·四等台吉','D024P04', '台吉府·四等台吉','D024P04', '','', '','', '',''],
                 ['D001P02','',    '内侍衛',    '侍衛府·三等侍衛','D061P03', '侍衛府·四等侍衛','D061P04', '侍衛府·蓝翎','D061P08', '','', '','', '',''],
                 ['D001P03','',    '聖裔奉祀生','翰林院·五經博士','D118P07', '至聖裔官·八品執事官','D059P06', '至聖裔官·九品執事官','D059P07', '', '', '','', '',''],
@@ -414,14 +420,14 @@ var position = [['D001P01','',    '台吉',      '台吉府·三等台吉','D024
                 ['D023P09','從七','副千戶'],
                 ['D023P10','正八','千戶'],
                 ['D023P11','正九','百戶'],
-                ["D024P01","","一等台吉","恩袭·輔國公","D120P6","滿八旗·都統","D062P01","漢八旗·都統","D064P01","外省駐防·都統","D046P01","留","D024P01","二等台吉","D024P02"],
-                ["D024P02","","二等台吉","恩袭·鎮國公","D120P5","一位","D024P01","藩右","","紀錄","","留","D024P02","下一","D024P03"],
-                ["D024P03","","三等台吉","二等台吉","D024P02","漢八旗·副都統","","外副都","","入鎮國","","留","D024P03","下一","D024P04"],
-                ["D024P04","","四等台吉","三等台吉","D024P03","蒙參",    "D063P03","漢參",    "DxxxPxx","入輔國",  "DxxxPxx","留",      "D024P04","免",      "DxxxPxx"],
-                ['D025P01','','一等侍卫'],
-                ['D025P02','','二等侍卫'],
-                ['D025P03','','三等侍卫'],
-                ['D025P04','','四等侍卫'],
+                ["D024P01","一等","一等台吉","恩袭·輔國公","D120P6","滿八旗·都統","D062P01","漢八旗·都統","D064P01","外省駐防·都統","D046P01","留","D024P01","二等台吉","D024P02"],
+                ["D024P02","二等","二等台吉","恩袭·鎮國公","D120P5","一位","D024P01","藩右","","紀錄","","留","D024P02","下一","D024P03"],
+                ["D024P03","三等","三等台吉","二等台吉","D024P02","漢八旗·副都統","","外副都","","入鎮國","","留","D024P03","下一","D024P04"],
+                ["D024P04","四等","四等台吉","三等台吉","D024P03","蒙參",    "D063P03","漢參",    "DxxxPxx","入輔國",  "DxxxPxx","留",      "D024P04","免",      "DxxxPxx"],
+                ['D025P01','一等','一等侍卫'],
+                ['D025P02','二等','二等侍卫'],
+                ['D025P03','三等','三等侍卫'],
+                ['D025P04','四等','四等侍卫'],
                 ['D026P01','','狀元'],
                 ['D026P02','','榜眼'],
                 ['D026P03','','探花'],
@@ -1283,11 +1289,28 @@ function diceDoFamily(){
   return diceGetFamily();
 }
 
+function createName(){
+  var s;
+  s = familyName[Math.floor(Math.random()*familyName.length)];
+  s = s + firstName[Math.floor(Math.random()*firstName.length)];
+  if(Math.random()*6>=4){
+    s = s + firstName[Math.floor(Math.random()*firstName.length)];
+  }
+  s = s+"字";
+  s = s + firstName[Math.floor(Math.random()*firstName.length)];
+  s = s + firstName[Math.floor(Math.random()*firstName.length)];
+  return s;
+}
+
+function createProvince(){
+  return province[Math.floor(Math.random()*province.length)];
+}
+
 function diceDoRun(){
   for(i=0; i<6; i++){
     dice[i]=Math.floor(Math.random()*6+1);
   }
-  //dice[0]=1;dice[1]=1;dice[2]=1;dice[3]=1;dice[4]=2;dice[5]=2;
+  //dice[0]=4;dice[1]=3;dice[2]=2;dice[3]=1;dice[4]=5;dice[5]=6;
   diceShow();
   return diceGetRun();
 }
@@ -1311,11 +1334,21 @@ function diceDo(){
     do_step=0;
   }else{
     if(do_step==1){
+      currentYear = Math.floor(Math.random()*180+20);
       game_step=getPosition(dicedovalue);
       document.getElementById(game_step).className="POSIACT_FM";
-      document.getElementById("family").innerHTML = dicedovalue;
+      s = createName();
+      i = s.indexOf("字");
+      document.getElementById("name").innerHTML = s.substr(0,i);
+      document.getElementById("name").title = s.substr(0,i) + s.substr(i,s.length-i) + "，" + createProvince() + "人";
+      document.getElementById("current").title = "出身"+dicedovalue;
       document.getElementById("current").innerHTML = dicedovalue;
-      document.getElementById("current_year").innerHTML = getChineseNumber(currentYear);
+      document.getElementById("current_age").innerHTML = getChineseNumber(currentAge);
+      document.getElementById("current_age").title = getEra(-20) + "生人"
+      document.getElementById("current_year").innerHTML = getEra(0);
+      addHistory(document.getElementById("name").title + "也，" + document.getElementById("current_age").title + "。");
+      addHistory(getEra(0) + "，年" + document.getElementById('current_age').innerHTML + "，初为" + dicedovalue + "。");
+      currentAge++;
       currentYear++;
       window.location.href="#"+game_step;
       diceDeck();
@@ -1323,10 +1356,11 @@ function diceDo(){
       do_step=0;
     }
     if(do_step==2){
-      // 获得当前动作
+      document.getElementById("current_age").innerHTML = getChineseNumber(currentAge);
+      document.getElementById("current_year").innerHTML = getEra(0);
+
       str = document.getElementById("dicedo").value;
       diceact = str.substr(0,1);
-      // 获得当前动作名称
       act = getPositionAct(game_step,diceact);
       if( act != "" ){
         document.getElementById("current").innerHTML = getPositionActName(game_step,diceact);
@@ -1336,11 +1370,32 @@ function diceDo(){
         cn = document.getElementById(game_step).className;
         document.getElementById(game_step).className=cn.substr(0,4)+"ACT"+cn.substr(4,3);
         window.location.href="#"+game_step.substr(0,4);
+        addHistory(getEra(0) + "，");
+        switch( diceact ){
+          case '德':
+            addHistory("因其德入" + document.getElementById("current").innerHTML + "。");
+            break;
+          case '才':
+            addHistory("因其才入" + document.getElementById("current").innerHTML + "。");
+            break;
+          case '功':
+            addHistory("以功入" + document.getElementById("current").innerHTML + "。");
+            break;
+          case '良':
+            addHistory("迁" + document.getElementById("current").innerHTML + "。");
+            break;
+          case '由':
+            addHistory("降" + document.getElementById("current").innerHTML + "。");
+            break;
+          case '庄':
+            addHistory("因赃罚" + document.getElementById("current").innerHTML + "。");
+            break;
+        }
       }
 
       document.getElementById("dicedo").value = str.substr(1,str.length-1);
       if (document.getElementById("dicedo").value == ""){
-        document.getElementById("current_year").innerHTML = getChineseNumber(currentYear);
+        currentAge++;
         currentYear++;
         diceDeck();
         document.getElementById("dicedo").value = "考評";
@@ -1365,6 +1420,25 @@ function diceDeck(){
   for(i=1;i<=6;i++){
     document.getElementById("dice"+i).classList.remove('diceshow');
   }
+}
+
+function addHistory(txt){
+  document.getElementById("history").innerHTML += txt;
+}
+
+function getEra(num){
+  var y = currentYear+num;
+  for(i=0;i<eraYear.length;i++){
+    if(y-eraYear[i]<0){
+      if(y==0){
+        return eraName[i] + "元年";
+      }else{
+        return eraName[i] + getChineseNumber(y+1) + "年";
+      }
+    }
+    y=y-eraYear[i];
+  }
+  return "已共和";
 }
 
 function getChineseNumber(num){
@@ -1470,16 +1544,13 @@ function diceGetFamily(){
     if(s.indexOf(diceFamily[i][0])==0){
       if(diceFamily[i][2]!=""){
         if(diceTotal == Math.floor(diceFamily[i][2])){
-          // document.getElementById("dicevalue").innerHTML = diceFamily[i][1];
           return diceFamily[i][1];
         }
       }else{
-        //document.getElementById("dicevalue").innerHTML = diceFamily[i][1];
         return diceFamily[i][1];
       }
     }
   }
-  //document.getElementById("dicevalue").innerHTML = "其它";
   return "其它";
 }
 
@@ -1653,8 +1724,8 @@ function departmentArranged(){
   var s="";
   for(i=0;i<department.length;i++){
     d[i]=new Array();
-    d[i][0] = "<div id='" + department[i][0] + "' class='DEPT_" + department[i][2] + "' onclick=\"hideDetail('" + department[i][0] + "');\"><a id='" + department[i][0] + "' />" + department[i][1];
-    d[i][0] += "<div id='" + department[i][0] + "E' class='EXPD'>▼</div><br>";
+    d[i][0] = "<div id='" + department[i][0] + "' class='DEPT_" + department[i][2] + "'><a id='" + department[i][0] + "' />" + department[i][1];
+    d[i][0] += "<div id='" + department[i][0] + "E' class='EXPD' onclick=\"hideDetail('" + department[i][0] + "');\">▼</div><br>";
     d[i][0] += "<div id='" + department[i][0] + "P' style='display:inline-block;'>";
     d[i][1] = "";
     d[i][2] = "</div></div>";
@@ -1806,16 +1877,15 @@ function departmentArranged(){
       <div id="info" class="info">
         <div id="boardinfo" class="boardInfo">
           <table width=100% height=80px><tr><td align=center><font size=80px>滿漢陞官圖</font></table>
-          <table width=100% height=24px><tr><td align=left width=100>姓名：<br>&nbsp;<div id='name' style='display:inline-block;'>某甲</div></td>
-                                            <td align=left width=100>当前：<br>&nbsp;<div id='current' style='display:inline-block;'></div></td>
-                                            <td align=left width=100>出身：<br>&nbsp;<div id='family' style='display:inline-block;'></div></td>
-                                            <td align=left width=100 nowrap><div id='current_year' style='display:inline-block;'>二十</div>岁<br>
+          <table width=100% height=24px><tr><td valign=top align=left width=250><div id='current' style='display:inline-block;'></div>&nbsp;
+                                            <br><div id='name' style='display:inline-block;'>某甲</div>
+                                            <td align=left width=150 nowrap><div id='current_age' style='display:inline-block;'>二十</div>岁<br>
                                                                             资产<div id='current_money' style='display:inline-block;'>十</div>两</td>
-                                        <tr><td align=center colspan=4>公筹银<div id='public_money' style='display:inline-block;'>一千</div>两</td></table>
+                                        <tr><td align=center colspan=2><div id='current_year' style='display:inline-block;'></div> 公筹银<div id='public_money' style='display:inline-block;'>一千</div>两</td></table>
         </div>
         <div id="playerhistory" class="playerHistory">
           <table width=100% height=24px><tr><td align=center>传记</table>
-          <div style="OVERFLOW-Y:auto;OVERFLOW-X:hidden;position:absolute;top:30px;left:5px;width:390px;height:115px">升赏降罚记录1<br>升赏降罚记录2<br>升赏降罚记录3<br>升赏降罚记录4<br>升赏降罚记录5<br>升赏降罚记录6<br>升赏降罚记录7</DIV>
+          <div id="history" style="OVERFLOW-Y:auto;OVERFLOW-X:hidden;position:absolute;top:30px;left:5px;width:390px;height:115px"></DIV>
         </div>
       </div>
     </div>
